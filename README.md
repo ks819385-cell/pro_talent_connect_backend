@@ -85,7 +85,7 @@ sequenceDiagram
 ## Project Layout
 
 ```text
-Backend/
+ProTalentConnect_Backend/
 |- app.js
 |- server.js
 |- package.json
