@@ -1,0 +1,2 @@
+# Ignore Windows reserved device name that shows up as untracked
+nul
