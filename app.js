@@ -25,75 +25,118 @@ const logger = require("./config/logger");
 
 const app = express();
 
-// Trust proxy - important for rate limiting behind reverse proxy
+// Trust proxy (important for rate limiting behind nginx)
 app.set("trust proxy", 1);
 
-// Security Headers
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      scriptSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "https:"],
-    },
-  },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true,
-  },
-}));
 
-// CORS Configuration
+// ================= SECURITY =================
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: ["'self'"],
+        imgSrc: ["'self'", "data:", "https:"],
+      },
+    },
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: true,
+    },
+  })
+);
+
+
+// ================= CORS FIX =================
+
+// Default allowed origins (local dev)
+const defaultAllowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+];
+
+// Read from .env
+const envAllowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",")
+      .map((item) => item.trim())
+      .filter(Boolean)
+  : [];
+
+// Merge + remove duplicates
+const allowedOrigins = [
+  ...new Set([...defaultAllowedOrigins, ...envAllowedOrigins]),
+];
+
+// Normalize origin
+function normalizeOrigin(value) {
+  return typeof value === "string" ? value.replace(/\/+$/, "") : value;
+}
+
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = process.env.ALLOWED_ORIGINS
-      ? process.env.ALLOWED_ORIGINS.split(",")
-      : ["http://localhost:3000", "http://localhost:5173"];
+    const normalizedOrigin = normalizeOrigin(origin);
 
-    // In production, don't allow requests with no origin
-    if (process.env.NODE_ENV === 'production' && !origin) {
-      return callback(new Error("Not allowed by CORS"), false);
+    // Allow tools like Postman / curl
+    if (!normalizedOrigin) {
+      return callback(null, true);
     }
 
-    // In development, allow no origin (Postman, etc.)
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    // Allow all if "*" is present
+    if (allowedOrigins.includes("*")) {
+      return callback(null, true);
+    }
+
+    const isAllowed = allowedOrigins.some(
+      (allowedOrigin) =>
+        normalizeOrigin(allowedOrigin) === normalizedOrigin
+    );
+
+    if (isAllowed) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      console.log("❌ CORS BLOCKED:", normalizedOrigin);
+      callback(new Error(`Not allowed by CORS: ${normalizedOrigin}`));
     }
   },
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   optionsSuccessStatus: 200,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
+// Apply CORS
 app.use(cors(corsOptions));
 
-// Body parser with size limits
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+// Safe preflight handler (no crash version)
+app.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return cors(corsOptions)(req, res, next);
+  }
+  next();
+});
+
+
+// ================= BODY PARSER =================
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cookieParser());
 
-// Data sanitization against NoSQL query injection
-// Custom Express 5 compatible middleware
+// ================= SECURITY MIDDLEWARE =================
 app.use(mongoSanitize());
-
-// Compression middleware
 app.use(compression());
 
-// Apply rate limiting to all routes
-app.use('/api/', apiLimiter);
+// ================= RATE LIMIT =================
+app.use("/api/", apiLimiter);
 
-// Request logging
+// ================= LOGGING =================
 app.use((req, res, next) => {
   logger.info(`${req.method} ${req.path} - IP: ${req.ip}`);
   next();
 });
 
-// Health check route (no rate limiting)
+// ================= HEALTH =================
 app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
@@ -102,12 +145,15 @@ app.get("/health", (req, res) => {
   });
 });
 
-// Ping route — lightweight keep-alive endpoint
 app.get("/ping", (req, res) => {
-  res.status(200).json({ success: true, message: "pong", timestamp: new Date().toISOString() });
+  res.status(200).json({
+    success: true,
+    message: "pong",
+    timestamp: new Date().toISOString(),
+  });
 });
 
-// Basic Route
+// ================= ROOT =================
 app.get("/", (req, res) => {
   res.json({
     success: true,
@@ -116,7 +162,7 @@ app.get("/", (req, res) => {
   });
 });
 
-// API Routes v1
+// ================= API ROUTES =================
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/admins", adminRoutes);
 app.use("/api/v1/players", playerRoutes);
@@ -129,7 +175,7 @@ app.use("/api/v1/contact", contactRoutes);
 app.use("/api/v1/otp", otpRoutes);
 app.use("/api/v1/leagues", leagueRoutes);
 
-// Legacy routes (for backward compatibility - to be deprecated)
+// Legacy routes
 app.use("/api/auth", authRoutes);
 app.use("/api/admins", adminRoutes);
 app.use("/api/players", playerRoutes);
@@ -142,10 +188,33 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/otp", otpRoutes);
 app.use("/api/leagues", leagueRoutes);
 
-// 404 handler
-app.use(notFound);
+// Proxy fallback routes
+app.use("/v1/auth", authRoutes);
+app.use("/v1/admins", adminRoutes);
+app.use("/v1/players", playerRoutes);
+app.use("/v1/dashboard", dashboardRoutes);
+app.use("/v1/blogs", blogRoutes);
+app.use("/v1/about", aboutRoutes);
+app.use("/v1/audit-logs", auditLogRoutes);
+app.use("/v1", serviceRoutes);
+app.use("/v1/contact", contactRoutes);
+app.use("/v1/otp", otpRoutes);
+app.use("/v1/leagues", leagueRoutes);
 
-// Global error handler (must be last)
+app.use("/auth", authRoutes);
+app.use("/admins", adminRoutes);
+app.use("/players", playerRoutes);
+app.use("/dashboard", dashboardRoutes);
+app.use("/blogs", blogRoutes);
+app.use("/about", aboutRoutes);
+app.use("/audit-logs", auditLogRoutes);
+app.use("/", serviceRoutes);
+app.use("/contact", contactRoutes);
+app.use("/otp", otpRoutes);
+app.use("/leagues", leagueRoutes);
+
+// ================= ERROR HANDLING =================
+app.use(notFound);
 app.use(errorHandler);
 
 module.exports = app;
