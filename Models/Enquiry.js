@@ -19,8 +19,8 @@ const enquirySchema = new mongoose.Schema(
     },
     subject: {
       type: String,
-      required: true,
       trim: true,
+      default: "",
     },
     message: {
       type: String,

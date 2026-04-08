@@ -51,16 +51,11 @@ app.use(
 
 // ================= CORS FIX =================
 
-// Default allowed origins (local dev)
-const defaultAllowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "https://www.protalentconnect.co.in",
-  "https://protalentconnect.co.in",
-  "https://protalentconnect.com",
-  "https://www.protalentconnect.com",
-  "https://pro-talent-connect-frontend.vercel.app",
-];
+// Default allowed origins (local dev only)
+const defaultAllowedOrigins =
+  process.env.NODE_ENV === "production"
+    ? []
+    : ["http://localhost:3000", "http://localhost:5173"];
 
 // Read from .env
 const envAllowedOrigins = process.env.ALLOWED_ORIGINS
@@ -73,6 +68,8 @@ const envAllowedOrigins = process.env.ALLOWED_ORIGINS
 const allowedOrigins = [
   ...new Set([...defaultAllowedOrigins, ...envAllowedOrigins]),
 ];
+
+logger.info(`CORS allowlist loaded (${allowedOrigins.length} origins)`);
 
 // Normalize origin
 function normalizeOrigin(value) {
@@ -115,7 +112,6 @@ const corsOptions = {
 
 // Apply CORS
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
 
 // Safe preflight handler (no crash version)
 app.use((req, res, next) => {

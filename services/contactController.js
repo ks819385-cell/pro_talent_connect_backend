@@ -9,7 +9,7 @@ const submitEnquiry = catchAsync(async (req, res) => {
     const { name, email, phone, subject, message } = req.body;
 
     // Validate required fields
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !message) {
       throw new AppError("Please provide all required fields", 400);
     }
 
@@ -17,7 +17,7 @@ const submitEnquiry = catchAsync(async (req, res) => {
       name,
       email,
       phone,
-      subject,
+      subject: subject?.trim() || "",
       message,
     });
 
@@ -51,7 +51,6 @@ const submitProfileRequest = catchAsync(async (req, res) => {
     if (
       !fullName ||
       !email ||
-      !phone ||
       !dateOfBirth ||
       !nationality ||
       !city ||
@@ -67,7 +66,7 @@ const submitProfileRequest = catchAsync(async (req, res) => {
     const profileRequest = await ProfileRequest.create({
       fullName,
       email,
-      phone,
+      phone: phone?.trim() || "",
       dateOfBirth,
       nationality,
       city,
@@ -75,10 +74,10 @@ const submitProfileRequest = catchAsync(async (req, res) => {
       preferredFoot,
       height,
       weight,
-      currentClub,
+      currentClub: currentClub?.trim() || "",
       yearsOfExperience,
-      achievements,
-      videoLink,
+      achievements: achievements?.trim() || "",
+      videoLink: videoLink?.trim() || "",
     });
 
     res.status(201).json({
@@ -167,67 +166,71 @@ const updateProfileRequestStatus = catchAsync(async (req, res) => {
     // If approved, create a Player record from the profile request data
     let createdPlayer = null;
     if (status === "approved") {
-      try {
-        // Check if player with this email already exists
-        const existingPlayer = await Player.findOne({ email: request.email, isDeleted: false });
-        if (!existingPlayer) {
-          // Calculate age from dateOfBirth
-          const dob = new Date(request.dateOfBirth);
-          const today = new Date();
-          let age = today.getFullYear() - dob.getFullYear();
-          const monthDiff = today.getMonth() - dob.getMonth();
-          if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-            age--;
-          }
+      if (!request.phone) {
+        console.warn("Profile request approved without phone. Skipping player creation.");
+      } else {
+        try {
+          // Check if player with this email already exists
+          const existingPlayer = await Player.findOne({ email: request.email, isDeleted: false });
+          if (!existingPlayer) {
+            // Calculate age from dateOfBirth
+            const dob = new Date(request.dateOfBirth);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+              age--;
+            }
 
-          // Determine age group
-          let age_group = "Senior";
-          if (age < 13) age_group = "U13";
-          else if (age < 15) age_group = "U15";
-          else if (age < 17) age_group = "U17";
-          else if (age < 19) age_group = "U19";
+            // Determine age group
+            let age_group = "Senior";
+            if (age < 13) age_group = "U13";
+            else if (age < 15) age_group = "U15";
+            else if (age < 17) age_group = "U17";
+            else if (age < 19) age_group = "U19";
 
-          // Generate a unique player ID
-          const playerId = `PTC-${Date.now()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+            // Generate a unique player ID
+            const playerId = `PTC-${Date.now()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
 
-          // Build player data
-          const playerData = {
-            name: request.fullName,
-            age,
-            age_group,
-            playingPosition: request.playingPosition.toUpperCase(),
-            preferredFoot: request.preferredFoot,
-            playerId,
-            dateOfBirth: request.dateOfBirth,
-            nationality: request.nationality,
-            weight: request.weight,
-            height: request.height,
-            gender: "Male", // Default, can be updated later
-            city: request.city,
-            mobileNumber: request.phone,
-            email: request.email,
-            career_history: request.currentClub ? `Current Club: ${request.currentClub}` : "",
-            scouting_notes: request.achievements || "",
-            media_links: request.videoLink ? [request.videoLink] : [],
-          };
-
-          // Auto-calculate scout report scores
-          try {
-            playerData.scoutReport = calculateScoutReport({
+            // Build player data
+            const playerData = {
+              name: request.fullName,
               age,
-              height: request.height,
+              age_group,
+              playingPosition: request.playingPosition.toUpperCase(),
+              preferredFoot: request.preferredFoot,
+              playerId,
+              dateOfBirth: request.dateOfBirth,
+              nationality: request.nationality,
               weight: request.weight,
-              playingPosition: request.playingPosition,
-            });
-          } catch (scoreErr) {
-            console.error("Error calculating scout report for approved profile:", scoreErr.message);
-          }
+              height: request.height,
+              gender: "Male", // Default, can be updated later
+              city: request.city,
+              mobileNumber: request.phone,
+              email: request.email,
+              career_history: request.currentClub ? `Current Club: ${request.currentClub}` : "",
+              scouting_notes: request.achievements || "",
+              media_links: request.videoLink ? [request.videoLink] : [],
+            };
 
-          createdPlayer = await Player.create(playerData);
+            // Auto-calculate scout report scores
+            try {
+              playerData.scoutReport = calculateScoutReport({
+                age,
+                height: request.height,
+                weight: request.weight,
+                playingPosition: request.playingPosition,
+              });
+            } catch (scoreErr) {
+              console.error("Error calculating scout report for approved profile:", scoreErr.message);
+            }
+
+            createdPlayer = await Player.create(playerData);
+          }
+        } catch (playerErr) {
+          console.error("Error creating player from approved request:", playerErr.message);
+          // Don't fail the status update if player creation fails
         }
-      } catch (playerErr) {
-        console.error("Error creating player from approved request:", playerErr.message);
-        // Don't fail the status update if player creation fails
       }
     }
 

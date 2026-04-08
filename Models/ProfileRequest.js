@@ -16,8 +16,8 @@ const profileRequestSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true,
       trim: true,
+      default: "",
     },
     dateOfBirth: {
       type: Date,
@@ -68,6 +68,7 @@ const profileRequestSchema = new mongoose.Schema(
     videoLink: {
       type: String,
       trim: true,
+      default: "",
     },
     
     status: {

@@ -2,7 +2,8 @@
  * Email Utility Service
  * Handles sending OTP emails via Nodemailer
  *
- * - If EMAIL_USER & EMAIL_PASS are set → uses Gmail (or configured service)
+ * - If SMTP_* is set → uses the configured SMTP server
+ * - Else if EMAIL_USER & EMAIL_PASS are set → uses Gmail (or configured service)
  * - Otherwise → auto-creates a free Ethereal test account (no config needed)
  *   and logs a preview URL to the terminal so you can view the email.
  */
@@ -15,7 +16,14 @@ let _etherealTransporter = null;
 /**
  * Check whether real email credentials are configured
  */
-const hasRealCredentials = () => {
+const hasSmtpCredentials = () => {
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASSWORD;
+  return Boolean(host && user && pass);
+};
+
+const hasLegacyCredentials = () => {
   const user = process.env.EMAIL_USER;
   const pass = process.env.EMAIL_PASS;
   return (
@@ -25,6 +33,8 @@ const hasRealCredentials = () => {
     pass !== "your-app-password"
   );
 };
+
+const hasRealCredentials = () => hasSmtpCredentials() || hasLegacyCredentials();
 
 /** Wrap a promise with a timeout — rejects with a descriptive error if it hangs */
 const withTimeout = (promise, ms, label) =>
@@ -37,17 +47,31 @@ const withTimeout = (promise, ms, label) =>
 
 const getTransporter = async () => {
   // ── Real credentials configured ──
-  if (hasRealCredentials()) {
+  if (hasSmtpCredentials()) {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: process.env.SMTP_PORT == 465,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+    return transporter;
+  }
+
+  if (hasLegacyCredentials()) {
     const transporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE || "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
-      // Connection pool — reuse connections across OTP sends
       pool: true,
       maxConnections: 3,
-      // Socket-level timeouts so a stalled SMTP server can't block a request
       connectionTimeout: 10000,
       greetingTimeout: 8000,
       socketTimeout: 10000,
@@ -82,7 +106,8 @@ const getTransporter = async () => {
   console.log("📧  Using Ethereal test email (no credentials configured)");
   console.log(`    Account: ${testAccount.user}`);
   console.log("    Emails won't reach real inboxes but preview URLs are logged.");
-  console.log("    To use real Gmail, set EMAIL_USER & EMAIL_PASS in .env");
+  console.log("    To use real SMTP, set SMTP_HOST/SMTP_USER/SMTP_PASSWORD in .env");
+  console.log("    Or use Gmail by setting EMAIL_USER & EMAIL_PASS in .env");
   console.log("─────────────────────────────────────────────");
 
   return _etherealTransporter;
@@ -109,12 +134,15 @@ const sendOTPEmail = async (to, otp, purpose) => {
       ? "Player Profile Creation"
       : "Password Change Verification";
 
-  const fromAddr = hasRealCredentials()
-    ? process.env.EMAIL_USER
-    : "otp@protalent.dev";
+  const fallbackFrom = hasSmtpCredentials()
+    ? process.env.SMTP_USER
+    : hasLegacyCredentials()
+      ? process.env.EMAIL_USER
+      : "otp@protalent.dev";
+  const fromAddr = process.env.EMAIL_FROM || `"ProTalent Connect" <${fallbackFrom}>`;
 
   const mailOptions = {
-    from: `"ProTalent Connect" <${fromAddr}>`,
+    from: fromAddr,
     to,
     subject: `Your OTP for ${purposeText} - ProTalent Connect`,
     html: `

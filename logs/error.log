@@ -11,3 +11,17 @@
 {"level":"error","message":"403 POST /api/players - Access denied. Only Super Admin can create players.","service":"pro-talent-connect","timestamp":"2026-03-11 15:03:34"}
 {"level":"error","message":"400 POST /api/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-03-11 15:03:36"}
 {"level":"error","message":"401 POST /api/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-03-11 15:03:41"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:28:01"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:28:52"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:31:12"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:31:39"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:32:58"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:34:21"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:35:20"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:36:21"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:38:07"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:38:55"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:39:47"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:49:41"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:50:18"}
+{"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:51:15"}

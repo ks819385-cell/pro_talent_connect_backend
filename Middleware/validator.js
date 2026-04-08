@@ -137,15 +137,15 @@ const updatePlayerSchema = Joi.object({
 const enquirySchema = Joi.object({
   name: Joi.string().min(2).max(100).required().trim(),
   email: Joi.string().email().required().trim().lowercase(),
-  phone: Joi.string().pattern(/^[0-9+\-\s()]+$/).allow(''),
-  subject: Joi.string().min(3).max(200).required().trim(),
+  phone: Joi.string().pattern(/^[0-9+\-\s()]+$/).allow('', null),
+  subject: Joi.string().min(3).max(200).allow('', null).trim(),
   message: Joi.string().min(10).max(2000).required().trim(),
 });
 
 const profileRequestSchema = Joi.object({
   fullName: Joi.string().min(2).max(100).required().trim(),
   email: Joi.string().email().required().trim().lowercase(),
-  phone: Joi.string().pattern(/^[0-9+\-\s()]+$/).required(),
+  phone: Joi.string().pattern(/^[0-9+\-\s()]+$/).allow('', null),
   dateOfBirth: Joi.date().required(),
   nationality: Joi.string().required().trim(),
   city: Joi.string().required().trim(),
@@ -153,10 +153,10 @@ const profileRequestSchema = Joi.object({
   preferredFoot: Joi.string().valid('Left', 'Right', 'Both').required(),
   height: Joi.number().min(100).max(250).required(),
   weight: Joi.number().min(30).max(150).required(),
-  currentClub: Joi.string().allow('').trim(),
+  currentClub: Joi.string().allow('', null).trim(),
   yearsOfExperience: Joi.number().integer().min(0).max(50).required(),
-  achievements: Joi.string().max(1000).allow('').trim(),
-  videoLink: Joi.string().uri().allow('').trim(),
+  achievements: Joi.string().max(1000).allow('', null).trim(),
+  videoLink: Joi.string().uri().allow('', null).trim(),
 });
 
 // Blog Schemas

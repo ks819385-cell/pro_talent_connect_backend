@@ -28,10 +28,11 @@ const sendPlayerOtp = catchAsync(async (req, res) => {
   try {
     await sendOTPEmail(email, otp, "player-creation");
   } catch (emailErr) {
+    console.error("SMTP send failed:", emailErr.message);
     const msg = emailErr.message.includes("Email not configured")
       ? "Email service is not configured on the server. Contact admin."
       : emailErr.message.includes("Invalid login") || emailErr.message.includes("auth")
-        ? "Email authentication failed. Check EMAIL_USER and EMAIL_PASS."
+        ? "Email authentication failed. Check SMTP_* or EMAIL_USER/EMAIL_PASS."
         : "Failed to send OTP. Please try again.";
     throw new AppError(msg, 503);
   }
@@ -95,10 +96,11 @@ const sendPasswordOtp = catchAsync(async (req, res) => {
   try {
     await sendOTPEmail(admin.email, otp, "change-password");
   } catch (emailErr) {
+    console.error("SMTP send failed:", emailErr.message);
     const msg = emailErr.message.includes("Email not configured")
       ? "Email service is not configured on the server. Contact admin."
       : emailErr.message.includes("Invalid login") || emailErr.message.includes("auth")
-        ? "Email authentication failed. Check EMAIL_USER and EMAIL_PASS."
+        ? "Email authentication failed. Check SMTP_* or EMAIL_USER/EMAIL_PASS."
         : "Failed to send OTP. Please try again.";
     throw new AppError(msg, 503);
   }
