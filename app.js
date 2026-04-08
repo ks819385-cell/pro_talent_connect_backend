@@ -55,6 +55,11 @@ app.use(
 const defaultAllowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
+  "https://www.protalentconnect.co.in",
+  "https://protalentconnect.co.in",
+  "https://protalentconnect.com",
+  "https://www.protalentconnect.com",
+  "https://pro-talent-connect-frontend.vercel.app",
 ];
 
 // Read from .env
@@ -71,7 +76,9 @@ const allowedOrigins = [
 
 // Normalize origin
 function normalizeOrigin(value) {
-  return typeof value === "string" ? value.replace(/\/+$/, "") : value;
+  return typeof value === "string"
+    ? value.trim().toLowerCase().replace(/\/+$/, "")
+    : value;
 }
 
 const corsOptions = {
@@ -108,6 +115,7 @@ const corsOptions = {
 
 // Apply CORS
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // Safe preflight handler (no crash version)
 app.use((req, res, next) => {
