@@ -34,7 +34,6 @@ const playerSchema = new mongoose.Schema(
     playerId: {
       type: String,
       required: true,
-      unique: true,
     },
     dateOfBirth: {
       type: Date,
@@ -236,6 +235,7 @@ const playerSchema = new mongoose.Schema(
 
 // Indexes for faster queries (email and playerId already indexed by unique: true)
 playerSchema.index({ isDeleted: 1 });
+playerSchema.index({ playerId: 1 });
 playerSchema.index({ playingPosition: 1 });
 playerSchema.index({ age_group: 1 });
 playerSchema.index({ gender: 1 });

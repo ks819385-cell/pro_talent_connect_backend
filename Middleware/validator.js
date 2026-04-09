@@ -5,6 +5,8 @@
 
 const Joi = require('joi');
 
+const PLAYER_ID_PATTERN = /^(PL\d{10}|Player Has No ID)$/;
+
 // Authentication Schemas
 const loginSchema = Joi.object({
   email: Joi.string().email().required().trim().lowercase(),
@@ -26,6 +28,45 @@ const registerAdminSchema = Joi.object({
   role: Joi.string().valid('Admin', 'Super Admin').default('Admin'),
 });
 
+const changePasswordSchema = Joi.object({
+  currentPassword: Joi.string().min(8).required(),
+  newPassword: Joi.string()
+    .min(8)
+    .max(128)
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/)
+    .required()
+    .messages({
+      'string.pattern.base': 'Password must contain uppercase, lowercase, number, and special character',
+      'string.min': 'Password must be at least 8 characters long',
+    }),
+});
+
+const forgotPasswordResetSchema = Joi.object({
+  email: Joi.string().email().required().trim().lowercase(),
+  newPassword: Joi.string()
+    .min(8)
+    .max(128)
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/)
+    .required()
+    .messages({
+      'string.pattern.base': 'Password must contain uppercase, lowercase, number, and special character',
+      'string.min': 'Password must be at least 8 characters long',
+    }),
+});
+
+const emailSchema = Joi.object({
+  email: Joi.string().email().required().trim().lowercase(),
+});
+
+const verifyOtpWithEmailSchema = Joi.object({
+  email: Joi.string().email().required().trim().lowercase(),
+  otp: Joi.string().length(6).pattern(/^\d+$/).required(),
+});
+
+const verifyOtpSchema = Joi.object({
+  otp: Joi.string().length(6).pattern(/^\d+$/).required(),
+});
+
 // Player Schemas
 const createPlayerSchema = Joi.object({
   name: Joi.string().min(2).max(100).required().trim(),
@@ -35,7 +76,9 @@ const createPlayerSchema = Joi.object({
   alternativePosition: Joi.string().allow('', null).trim(),
   preferredFoot: Joi.string().valid('Left', 'Right', 'Both').required(),
   transferMarketLink: Joi.string().uri().allow('', null).trim(),
-  playerId: Joi.string().required().trim(),
+  playerId: Joi.string().required().trim().pattern(PLAYER_ID_PATTERN).messages({
+    'string.pattern.base': 'Player ID must look like PL0000000040, or use Player Has No ID when the player does not have an assigned ID',
+  }),
   dateOfBirth: Joi.date().required(),
   nationality: Joi.string().required().trim(),
   weight: Joi.number().min(30).max(150).allow(null, ''),
@@ -55,7 +98,6 @@ const createPlayerSchema = Joi.object({
   videoThumbnail: Joi.string().uri().allow('', null).trim(),
   videoTitle: Joi.string().max(120).allow('', null).trim(),
   videoDescription: Joi.string().max(300).allow('', null).trim(),
-  plId: Joi.string().allow('', null).trim(),
   competitions: Joi.array().items(
     Joi.object({
       name: Joi.string().required().trim(),
@@ -88,7 +130,9 @@ const updatePlayerSchema = Joi.object({
   alternativePosition: Joi.string().allow('', null).trim(),
   preferredFoot: Joi.string().valid('Left', 'Right', 'Both').allow('', null),
   transferMarketLink: Joi.string().uri().allow('', null).trim(),
-  playerId: Joi.string().trim(),
+  playerId: Joi.string().trim().pattern(PLAYER_ID_PATTERN).messages({
+    'string.pattern.base': 'Player ID must look like PL0000000040, or use Player Has No ID when the player does not have an assigned ID',
+  }),
   dateOfBirth: Joi.date(),
   nationality: Joi.string().allow('', null).trim(),
   weight: Joi.number().min(30).max(150).allow(null, ''),
@@ -108,7 +152,6 @@ const updatePlayerSchema = Joi.object({
   videoThumbnail: Joi.string().uri().allow('', null).trim(),
   videoTitle: Joi.string().max(120).allow('', null).trim(),
   videoDescription: Joi.string().max(300).allow('', null).trim(),
-  plId: Joi.string().allow('', null).trim(),
   competitions: Joi.array().items(
     Joi.object({
       name: Joi.string().required().trim(),
@@ -162,14 +205,36 @@ const profileRequestSchema = Joi.object({
 // Blog Schemas
 const blogSchema = Joi.object({
   title: Joi.string().min(5).max(200).required().trim(),
-  slug: Joi.string().pattern(/^[a-z0-9-]+$/).required(),
+  slug: Joi.string().pattern(/^[a-z0-9-]+$/).allow('', null),
   excerpt: Joi.string().min(20).max(500).required().trim(),
   content: Joi.string().min(100).required().trim(),
-  author: Joi.string().required().trim(),
+  author: Joi.string().trim().allow('', null),
   category: Joi.string().required().trim(),
   tags: Joi.array().items(Joi.string().trim()),
   featured_image: Joi.string().allow('').trim(),
   published: Joi.boolean(),
+});
+
+const updateBlogSchema = Joi.object({
+  title: Joi.string().min(5).max(200).trim(),
+  slug: Joi.string().pattern(/^[a-z0-9-]+$/).allow('', null),
+  excerpt: Joi.string().min(20).max(500).trim(),
+  content: Joi.string().min(100).trim(),
+  category: Joi.string().trim(),
+  tags: Joi.array().items(Joi.string().trim()),
+  cover_image: Joi.string().allow('', null).trim(),
+  image: Joi.string().allow('', null).trim(),
+  readTime: Joi.number().integer().min(1).max(120),
+  status: Joi.string().valid('DRAFT', 'PUBLISHED'),
+}).min(1);
+
+const enquiryStatusSchema = Joi.object({
+  status: Joi.string().valid('pending', 'in-progress', 'resolved', 'closed').required(),
+});
+
+const profileRequestStatusSchema = Joi.object({
+  status: Joi.string().valid('pending', 'reviewing', 'approved', 'rejected').required(),
+  adminNotes: Joi.string().max(2000).allow('', null).trim(),
 });
 
 // Validation middleware generator
@@ -203,9 +268,17 @@ module.exports = {
   validate,
   loginSchema,
   registerAdminSchema,
+  changePasswordSchema,
+  forgotPasswordResetSchema,
+  emailSchema,
+  verifyOtpWithEmailSchema,
+  verifyOtpSchema,
   createPlayerSchema,
   updatePlayerSchema,
   enquirySchema,
   profileRequestSchema,
   blogSchema,
+  updateBlogSchema,
+  enquiryStatusSchema,
+  profileRequestStatusSchema,
 };

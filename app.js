@@ -21,7 +21,9 @@ const leagueRoutes = require("./Routes/leagueRoutes");
 const { apiLimiter } = require("./Middleware/rateLimiter");
 const { errorHandler, notFound } = require("./Middleware/errorHandler");
 const mongoSanitize = require("./Middleware/mongoSanitize");
+const { csrfProtection, generateCsrfToken, csrfErrorHandler } = require("./Middleware/csrfMiddleware");
 const logger = require("./config/logger");
+const { getCacheStats, flushCache } = require("./Middleware/cache");
 
 const app = express();
 
@@ -106,7 +108,7 @@ const corsOptions = {
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-CSRF-Token"],
   optionsSuccessStatus: 200,
 };
 
@@ -127,12 +129,16 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cookieParser());
 
+// ================= CSRF PROTECTION =================
+// CSRF tokens required for all state-changing requests (POST, PUT, DELETE, PATCH)
+app.use(csrfProtection);
+
 // ================= SECURITY MIDDLEWARE =================
 app.use(mongoSanitize());
 app.use(compression());
 
 // ================= RATE LIMIT =================
-app.use("/api/", apiLimiter);
+app.use(apiLimiter);
 
 // ================= LOGGING =================
 app.use((req, res, next) => {
@@ -157,6 +163,18 @@ app.get("/ping", (req, res) => {
   });
 });
 
+// ================= CACHE STATS (Development/Monitoring) =================
+app.get("/cache/stats", (req, res) => {
+  logger.debug("Cache stats requested");
+  getCacheStats(req, res);
+});
+
+// Flush cache (admin endpoint - add auth in production)
+app.post("/cache/flush", (req, res) => {
+  logger.warn("Cache flush requested");
+  flushCache(req, res);
+});
+
 // ================= ROOT =================
 app.get("/", (req, res) => {
   res.json({
@@ -166,7 +184,8 @@ app.get("/", (req, res) => {
   });
 });
 
-// ================= API ROUTES =================
+// ================= API ROUTES (Canonical v1 API) =================
+// All routes mounted under /api/v1/* prefix for consistency and rate-limit protection
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/admins", adminRoutes);
 app.use("/api/v1/players", playerRoutes);
@@ -174,50 +193,16 @@ app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/blogs", blogRoutes);
 app.use("/api/v1/about", aboutRoutes);
 app.use("/api/v1/audit-logs", auditLogRoutes);
-app.use("/api/v1", serviceRoutes);
 app.use("/api/v1/contact", contactRoutes);
 app.use("/api/v1/otp", otpRoutes);
 app.use("/api/v1/leagues", leagueRoutes);
-
-// Legacy routes
-app.use("/api/auth", authRoutes);
-app.use("/api/admins", adminRoutes);
-app.use("/api/players", playerRoutes);
-app.use("/api/dashboard", dashboardRoutes);
-app.use("/api/blogs", blogRoutes);
-app.use("/api/about", aboutRoutes);
-app.use("/api/audit-logs", auditLogRoutes);
-app.use("/api", serviceRoutes);
-app.use("/api/contact", contactRoutes);
-app.use("/api/otp", otpRoutes);
-app.use("/api/leagues", leagueRoutes);
-
-// Proxy fallback routes
-app.use("/v1/auth", authRoutes);
-app.use("/v1/admins", adminRoutes);
-app.use("/v1/players", playerRoutes);
-app.use("/v1/dashboard", dashboardRoutes);
-app.use("/v1/blogs", blogRoutes);
-app.use("/v1/about", aboutRoutes);
-app.use("/v1/audit-logs", auditLogRoutes);
-app.use("/v1", serviceRoutes);
-app.use("/v1/contact", contactRoutes);
-app.use("/v1/otp", otpRoutes);
-app.use("/v1/leagues", leagueRoutes);
-
-app.use("/auth", authRoutes);
-app.use("/admins", adminRoutes);
-app.use("/players", playerRoutes);
-app.use("/dashboard", dashboardRoutes);
-app.use("/blogs", blogRoutes);
-app.use("/about", aboutRoutes);
-app.use("/audit-logs", auditLogRoutes);
-app.use("/", serviceRoutes);
-app.use("/contact", contactRoutes);
-app.use("/otp", otpRoutes);
-app.use("/leagues", leagueRoutes);
+// Services & How It Works define their own full paths (services, how-it-works)
+app.use("/api/v1", serviceRoutes);
 
 // ================= ERROR HANDLING =================
+// CSRF token errors need specific handling (must be before generic error handler)
+app.use(csrfErrorHandler);
+
 app.use(notFound);
 app.use(errorHandler);
 

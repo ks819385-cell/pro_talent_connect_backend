@@ -25,3 +25,39 @@
 {"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:49:41"}
 {"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:50:18"}
 {"level":"error","message":"503 POST /api/otp/send-password-otp - Failed to send OTP. Please try again.","service":"pro-talent-connect","timestamp":"2026-04-08 21:51:15"}
+{"level":"error","message":"401 POST /api/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 22:39:00"}
+{"level":"error","message":"403 POST /api/players - Access denied. Only Super Admin can create players.","service":"pro-talent-connect","timestamp":"2026-04-09 22:40:15"}
+{"level":"error","message":"400 POST /api/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 22:40:18"}
+{"level":"error","message":"401 POST /api/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 22:40:25"}
+{"level":"error","message":"403 POST /api/players - Access denied. Only Super Admin can create players.","service":"pro-talent-connect","timestamp":"2026-04-09 22:40:49"}
+{"level":"error","message":"400 POST /api/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 22:40:52"}
+{"level":"error","message":"401 POST /api/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 22:40:59"}
+{"level":"error","message":"404 GET /api/players - Route /api/players not found","service":"pro-talent-connect","timestamp":"2026-04-09 22:48:44"}
+{"level":"error","message":"404 GET /api/dashboard/stats - Route /api/dashboard/stats not found","service":"pro-talent-connect","timestamp":"2026-04-09 22:48:49"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 22:52:28"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 22:52:34"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 22:53:11"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 22:53:18"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 22:53:37"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 22:53:44"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 22:54:20"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 22:54:27"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 23:00:54"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 23:01:02"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 23:03:02"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 23:03:09"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 23:07:43"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 23:07:52"}
+{"level":"error","message":"404 GET /api/players?limit=100 - Route /api/players?limit=100 not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:26:30"}
+{"level":"error","message":"404 GET /api/players?limit=100 - Route /api/players?limit=100 not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:26:30"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 23:28:11"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 23:28:18"}
+{"level":"error","message":"404 PUT /api/v1/services/6998764c1908a8e9b1e69ed6 - Service not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:28:54"}
+{"level":"error","message":"404 GET /api/v1/services/6998764c1908a8e9b1e69ed6 - Service not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:30:08"}
+{"level":"error","message":"404 GET /favicon.ico - Route /favicon.ico not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:30:09"}
+{"level":"error","message":"404 GET /api/players?limit=100 - Route /api/players?limit=100 not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:30:21"}
+{"level":"error","message":"404 GET /api/players?limit=100 - Route /api/players?limit=100 not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:30:21"}
+{"level":"error","message":"404 GET /api/players?limit=100 - Route /api/players?limit=100 not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:31:49"}
+{"level":"error","message":"404 GET /api/players?limit=100 - Route /api/players?limit=100 not found","service":"pro-talent-connect","timestamp":"2026-04-09 23:31:49"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-04-09 23:45:39"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-04-09 23:45:45"}

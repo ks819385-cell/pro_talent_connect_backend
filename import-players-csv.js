@@ -20,6 +20,7 @@ const { calculateScoutReport } = require("./services/scoutReportCalculator");
 
 const CSV_PATH = path.join(__dirname, "..", "CRM Master Player Database of 75 Players - Copy.csv");
 const UPDATE_MODE = process.argv.includes("--update");
+const MISSING_ID_LABEL = "Player Has No ID";
 
 // ─── Helpers ───
 
@@ -86,10 +87,8 @@ function parsePosition(positionStr) {
   };
 }
 
-function generatePlayerId() {
-  // Generate a temporary unique player ID for players without one
-  const rand = Math.floor(100000 + Math.random() * 900000);
-  return `PL_TEMP_${rand}_${Date.now()}`;
+function generateMissingPlayerId() {
+  return MISSING_ID_LABEL;
 }
 
 // ─── Competition Type Auto-Detection ───
@@ -278,7 +277,8 @@ async function importPlayers() {
     // Map CSV fields to Player model
     const { primary, alternative } = parsePosition(row["Position"]);
     const { state, nationality } = extractStateAndNationality(row["Place of Birth"]);
-    const playerId = rawPlayerId && rawPlayerId !== "N/A" ? rawPlayerId : generatePlayerId();
+    const hasValidPlayerId = !!(rawPlayerId && rawPlayerId !== "N/A");
+    const playerId = hasValidPlayerId ? rawPlayerId : generateMissingPlayerId();
     const dob = parseDate(row["Date of Birth"]);
     const age = parseInt(row["Age"]) || null;
     const height = parseInt(row["Height (cms)"]) || undefined;
@@ -303,6 +303,10 @@ async function importPlayers() {
           stateLeague,
           clubsPlayed,
         });
+
+        if (!hasValidPlayerId) {
+          scoutReport.grade = "INCOMPLETE";
+        }
 
         await Player.updateOne(
           { _id: existingPlayer._id },
@@ -355,6 +359,10 @@ async function importPlayers() {
       clubsPlayed,
     });
 
+    if (!hasValidPlayerId) {
+      scoutReport.grade = "INCOMPLETE";
+    }
+
     const playerData = {
       name,
       email,
@@ -381,7 +389,7 @@ async function importPlayers() {
       competitions,
       clubsPlayed,
       transferMarketLink,
-      plId: rawPlayerId && rawPlayerId !== "N/A" ? rawPlayerId : "",
+      plId: hasValidPlayerId ? rawPlayerId : MISSING_ID_LABEL,
       scoutReport,
     };
 

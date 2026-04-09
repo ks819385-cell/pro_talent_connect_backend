@@ -25,10 +25,10 @@ router.get("/:id", cacheMiddleware(60, 'players'), getPlayerById);
 // Protected routes - require authentication
 router.use(protect);
 
-// Admin & Super Admin can create players (invalidates players cache)
+// Super Admin only can create players (invalidates players cache)
 router.post(
   "/",
-  authorize("Admin", "Super Admin"),
+  authorize("Super Admin"),
   createLimiter,
   validate(createPlayerSchema),
   invalidateCache('players'),

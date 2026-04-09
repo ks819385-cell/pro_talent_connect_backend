@@ -7,11 +7,12 @@ const Otp = require("../Models/Otp");
 describe("Players API", () => {
   let token;
   let superToken;
+  let agent;
 
   const createValidPlayerPayload = (overrides = {}) => ({
     name: "John Doe",
     playingPosition: "Forward",
-    playerId: "P001",
+    playerId: "PL0000000001",
     dateOfBirth: "2000-01-01",
     gender: "Male",
     mobileNumber: "1234567890",
@@ -34,6 +35,10 @@ describe("Players API", () => {
   };
 
   beforeEach(async () => {
+    // Use agent to maintain cookies across requests
+    const request_module = require("supertest");
+    agent = request_module.agent(app);
+
     // Setup Admin
     const admin = await Admin.create({
       name: "Admin",
@@ -49,27 +54,46 @@ describe("Players API", () => {
       role: "Super Admin",
     });
 
-    const loginRes = await request(app).post("/api/auth/login").send({
-      email: "admin@test.com",
-      password: "Password@123",
-    });
+    // Get CSRF token using agent
+    let csrfRes = await agent.get("/api/v1/auth/csrf-token");
+    let csrfToken = csrfRes.body.csrfToken;
+
+    const loginRes = await agent
+      .post("/api/v1/auth/login")
+      .set("X-CSRF-Token", csrfToken)
+      .send({
+        email: "admin@test.com",
+        password: "Password@123",
+      });
     token = loginRes.body.token;
 
-    const superLoginRes = await request(app).post("/api/auth/login").send({
-      email: "super@test.com",
-      password: "Password@123",
-    });
+    // Get new CSRF token for super admin login
+    csrfRes = await agent.get("/api/v1/auth/csrf-token");
+    csrfToken = csrfRes.body.csrfToken;
+
+    const superLoginRes = await agent
+      .post("/api/v1/auth/login")
+      .set("X-CSRF-Token", csrfToken)
+      .send({
+        email: "super@test.com",
+        password: "Password@123",
+      });
     superToken = superLoginRes.body.token;
   });
 
-  describe("POST /api/players", () => {
+  describe("POST /api/v1/players", () => {
     it("should create a player by super admin", async () => {
       const payload = createValidPlayerPayload();
       await createVerifiedOtp(payload.email);
 
-      const res = await request(app)
-        .post("/api/players")
+      // Get fresh CSRF token
+      const csrfRes = await agent.get("/api/v1/auth/csrf-token");
+      const csrfToken = csrfRes.body.csrfToken;
+
+      const res = await agent
+        .post("/api/v1/players")
         .set("Authorization", `Bearer ${superToken}`)
+        .set("X-CSRF-Token", csrfToken)
         .send(payload);
 
       expect(res.status).toBe(201);
@@ -81,18 +105,28 @@ describe("Players API", () => {
       const payload = createValidPlayerPayload();
       await createVerifiedOtp(payload.email);
 
-      const res = await request(app)
-        .post("/api/players")
+      // Get fresh CSRF token
+      const csrfRes = await agent.get("/api/v1/auth/csrf-token");
+      const csrfToken = csrfRes.body.csrfToken;
+
+      const res = await agent
+        .post("/api/v1/players")
         .set("Authorization", `Bearer ${token}`)
+        .set("X-CSRF-Token", csrfToken)
         .send(payload);
 
       expect(res.status).toBe(403);
     });
 
     it("should fail if required fields missing", async () => {
-      const res = await request(app)
-        .post("/api/players")
+      // Get fresh CSRF token
+      const csrfRes = await agent.get("/api/v1/auth/csrf-token");
+      const csrfToken = csrfRes.body.csrfToken;
+
+      const res = await agent
+        .post("/api/v1/players")
         .set("Authorization", `Bearer ${superToken}`)
+        .set("X-CSRF-Token", csrfToken)
         .send({
           name: "John Doe",
         });
@@ -105,7 +139,7 @@ describe("Players API", () => {
       await Player.create({
         name: "Existing",
         playingPosition: "Forward",
-        playerId: "P001",
+        playerId: "PL0000000001",
         dateOfBirth: new Date(),
         gender: "Male",
         mobileNumber: "0000000000",
@@ -113,14 +147,19 @@ describe("Players API", () => {
       });
 
       const payload = createValidPlayerPayload({
-        playerId: "P001",
+        playerId: "PL0000000001",
         email: "new-email@test.com",
       });
       await createVerifiedOtp(payload.email);
 
-      const res = await request(app)
-        .post("/api/players")
+      // Get fresh CSRF token
+      const csrfRes = await agent.get("/api/v1/auth/csrf-token");
+      const csrfToken = csrfRes.body.csrfToken;
+
+      const res = await agent
+        .post("/api/v1/players")
         .set("Authorization", `Bearer ${superToken}`)
+        .set("X-CSRF-Token", csrfToken)
         .send(payload);
 
       expect(res.status).toBe(400);
@@ -128,20 +167,20 @@ describe("Players API", () => {
     });
   });
 
-  describe("GET /api/players", () => {
+  describe("GET /api/v1/players", () => {
     it("should return all players for regular admin", async () => {
       await Player.create({
         name: "Player 1",
         playingPosition: "Forward",
-        playerId: "P001",
+        playerId: "PL0000000002",
         dateOfBirth: new Date(),
         gender: "Male",
         mobileNumber: "111",
         email: "p1@test.com",
       });
 
-      const res = await request(app)
-        .get("/api/players")
+      const res = await agent
+        .get("/api/v1/players")
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.status).toBe(200);
@@ -149,12 +188,12 @@ describe("Players API", () => {
     });
   });
 
-  describe("PUT /api/players/:id", () => {
+  describe("PUT /api/v1/players/:id", () => {
     it("should update a player's image", async () => {
       const player = await Player.create({
         name: "Old Name",
         playingPosition: "Forward",
-        playerId: "P999",
+        playerId: "PL0000000003",
         dateOfBirth: new Date(),
         gender: "Male",
         mobileNumber: "999",
@@ -162,9 +201,14 @@ describe("Players API", () => {
         profileImage: "old-image.jpg",
       });
 
-      const res = await request(app)
-        .put(`/api/players/${player._id}`)
+      // Get fresh CSRF token
+      const csrfRes = await agent.get("/api/v1/auth/csrf-token");
+      const csrfToken = csrfRes.body.csrfToken;
+
+      const res = await agent
+        .put(`/api/v1/players/${player._id}`)
         .set("Authorization", `Bearer ${token}`)
+        .set("X-CSRF-Token", csrfToken)
         .send({
           profileImage: "new-image.jpg",
         });

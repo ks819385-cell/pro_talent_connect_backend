@@ -4,13 +4,17 @@
     "dev": "nodemon server.js",
     "test": "jest --detectOpenHandles --forceExit",
     "test:json": "jest --json --outputFile=test-results.json --detectOpenHandles --forceExit",
-    "report": "npm run test:json && node generate-report.js"
+    "report": "npm run test:json && node generate-report.js",
+    "fix:temp-player-ids": "node fix-temp-player-ids.js",
+    "seed:blogs": "node seed-human-blogs.js",
+    "seed:blogs:80": "node seed-human-blogs.js 80"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
+    "csurf": "^1.11.0",
     "csv-parse": "^6.1.0",
     "dotenv": "^17.3.1",
     "dotenv-safe": "^9.1.0",

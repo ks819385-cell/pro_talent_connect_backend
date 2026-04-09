@@ -3,6 +3,8 @@ const { logAction } = require("../Middleware/auditLogger");
 const { calculateScoutReport } = require("./scoutReportCalculator");
 const { AppError, catchAsync } = require("../Middleware/errorHandler");
 
+const MISSING_ID_LABEL = "Player Has No ID";
+
 // @desc    Create a new player
 // @route   POST /api/players
 // @access  Private / Super Admin Only
@@ -41,7 +43,6 @@ const createPlayer = catchAsync(async (req, res) => {
       videoTitle,
       videoDescription,
       clubsPlayed,
-      plId,
       competitions,
       currentLeague,
       stateLeague,
@@ -51,11 +52,12 @@ const createPlayer = catchAsync(async (req, res) => {
       mentalityScore,
     } = req.body;
 
+    const normalizedPlayerId = playerId?.trim() || MISSING_ID_LABEL;
+
     // Check required fields
     if (
       !name ||
       !playingPosition ||
-      !playerId ||
       !dateOfBirth ||
       !gender ||
       !mobileNumber ||
@@ -75,9 +77,11 @@ const createPlayer = catchAsync(async (req, res) => {
         calculatedAge--;
     }
 
-    // Check for duplicate playerId or email (only among non-deleted players)
+    // Check for duplicate playerId or email (only among non-deleted players).
+    // The missing-ID placeholder is intentionally reusable.
+    const playerIdFilter = normalizedPlayerId === MISSING_ID_LABEL ? null : { playerId: normalizedPlayerId };
     const existingPlayer = await Player.findOne({
-      $or: [{ playerId }, { email }],
+      $or: [playerIdFilter, { email }].filter(Boolean),
       isDeleted: { $ne: true },
     });
 
@@ -94,7 +98,7 @@ const createPlayer = catchAsync(async (req, res) => {
       alternativePosition,
       preferredFoot,
       transferMarketLink,
-      playerId,
+      playerId: normalizedPlayerId,
       dateOfBirth,
       nationality,
       weight,
@@ -115,7 +119,7 @@ const createPlayer = catchAsync(async (req, res) => {
       videoTitle,
       videoDescription,
       clubsPlayed,
-      plId,
+      plId: normalizedPlayerId,
       competitions,
       currentLeague,
       stateLeague,
@@ -183,7 +187,7 @@ const createPlayer = catchAsync(async (req, res) => {
       resourceId: player._id.toString(),
       description: `Player created: ${player.name} (ID: ${player.playerId})`,
       req,
-      changes: { name, playerId, playingPosition, email },
+      changes: { name, playerId: normalizedPlayerId, playingPosition, email },
       status: "SUCCESS",
     });
 
@@ -386,7 +390,6 @@ const updatePlayer = catchAsync(async (req, res) => {
       "videoTitle",
       "videoDescription",
       "clubsPlayed",
-      "plId",
       "competitions",
       "currentLeague",
       "stateLeague",
@@ -401,6 +404,8 @@ const updatePlayer = catchAsync(async (req, res) => {
         player[field] = req.body[field];
       }
     });
+
+    player.plId = player.playerId;
 
     // Track who updated
     player.updatedBy = req.user._id;

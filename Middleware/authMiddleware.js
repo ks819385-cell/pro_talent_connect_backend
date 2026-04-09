@@ -5,12 +5,19 @@ const Admin = require("../Models/Admin");
 const protect = async (req, res, next) => {
   let token;
 
+  // Prefer explicit Authorization header over cookie token.
+  // This keeps API behavior predictable when both are present.
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
+    token = req.headers.authorization.split(" ")[1];
+  } else if (req.cookies && req.cookies.adminToken) {
+    token = req.cookies.adminToken;
+  }
+
+  if (token) {
     try {
-      token = req.headers.authorization.split(" ")[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       // Attach admin (without password) to request

@@ -9,6 +9,7 @@ const app = require("./app");
 const logger = require("./config/logger");
 const { seedLeagues } = require("./services/leagueController");
 const keepAliveWorker = require("./services/keepAliveWorker");
+const { initCacheWarming } = require("./services/cacheWarmer");
 
 // Handle uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -22,6 +23,9 @@ process.on("uncaughtException", (err) => {
 connectDB().then(async () => {
   // Seed default league data if empty
   await seedLeagues();
+
+  // Warm up cache with hot data
+  await initCacheWarming();
 
   // Start 24-hour MongoDB keep-alive background worker
   keepAliveWorker.start();

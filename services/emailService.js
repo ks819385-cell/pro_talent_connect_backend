@@ -129,10 +129,12 @@ const generateOTP = () => {
 const sendOTPEmail = async (to, otp, purpose) => {
   const transporter = await getTransporter();
 
-  const purposeText =
-    purpose === "player-creation"
-      ? "Player Profile Creation"
-      : "Password Change Verification";
+  const purposeMap = {
+    "player-creation": "Player Profile Creation",
+    "change-password": "Password Change Verification",
+    "forgot-password": "Password Reset Verification",
+  };
+  const purposeText = purposeMap[purpose] || "Verification";
 
   const fallbackFrom = hasSmtpCredentials()
     ? process.env.SMTP_USER

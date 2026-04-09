@@ -4,6 +4,17 @@ const generateToken = require("../services/generateToken");
 const { logAction } = require("../Middleware/auditLogger");
 const { AppError, catchAsync } = require("../Middleware/errorHandler");
 
+const getCookieOptions = () => {
+  const isProduction = process.env.NODE_ENV === "production";
+  return {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    path: "/",
+  };
+};
+
 // @desc    Login admin
 // @route   POST /api/auth/login
 // @access  Public
@@ -66,6 +77,9 @@ const loginAdmin = catchAsync(async (req, res) => {
     status: "SUCCESS"
   });
 
+  const token = generateToken(admin._id, admin.role);
+  res.cookie("adminToken", token, getCookieOptions());
+
   res.status(200).json({
     _id: admin._id,
     name: admin.name,
@@ -74,7 +88,8 @@ const loginAdmin = catchAsync(async (req, res) => {
     profile_image: admin.profile_image,
     is_active: admin.is_active,
     last_login: admin.last_login,
-    token: generateToken(admin._id, admin.role),
+    token,
+    csrfToken: req.csrfToken(),
   });
 });
 
@@ -199,6 +214,51 @@ const changePassword = catchAsync(async (req, res) => {
   res.status(200).json({ message: "Password changed successfully" });
 });
 
+// @desc    Reset password via forgot-password flow
+// @route   POST /api/auth/forgot-password/reset
+// @access  Public
+const resetForgotPassword = catchAsync(async (req, res) => {
+  const email = req.body?.email?.trim()?.toLowerCase();
+  const newPassword = req.body?.newPassword;
+
+  if (!email || !newPassword) {
+    throw new AppError("Email and new password are required", 400);
+  }
+
+  const admin = await Admin.findOne({ email, is_active: true });
+
+  if (!admin) {
+    throw new AppError("Invalid or expired verification", 400);
+  }
+
+  const verifiedOtp = await Otp.findOne({
+    email,
+    purpose: "forgot-password",
+    verified: true,
+  });
+
+  if (!verifiedOtp || verifiedOtp.expiresAt < new Date()) {
+    throw new AppError("Email OTP verification is required", 400);
+  }
+
+  await Otp.deleteMany({ email, purpose: "forgot-password" });
+
+  admin.password = newPassword;
+  await admin.save();
+
+  await logAction({
+    user: admin,
+    action: "PASSWORD_RESET",
+    resourceType: "Auth",
+    resourceId: admin._id.toString(),
+    description: `Admin ${admin.name} reset password via forgot-password flow`,
+    req,
+    status: "SUCCESS"
+  });
+
+  res.status(200).json({ message: "Password reset successfully" });
+});
+
 // @desc    Update admin role
 // @route   PUT /api/auth/admin/:id/role
 // @access  Private / Super Admin only
@@ -261,6 +321,12 @@ const logoutAdmin = catchAsync(async (req, res) => {
     status: "SUCCESS"
   });
 
+  res.clearCookie("adminToken", {
+    ...getCookieOptions(),
+    maxAge: undefined,
+    expires: new Date(0),
+  });
+
   res.status(200).json({
     success: true,
     message: "Logged out successfully",
@@ -282,6 +348,7 @@ const refreshToken = catchAsync(async (req, res) => {
   }
 
   const newToken = generateToken(admin._id, admin.role);
+  res.cookie("adminToken", newToken, getCookieOptions());
 
   res.status(200).json({
     success: true,
@@ -296,4 +363,13 @@ const refreshToken = catchAsync(async (req, res) => {
   });
 });
 
-module.exports = { loginAdmin, registerAdmin, getProfile, changePassword, updateAdminRole, logoutAdmin, refreshToken, logoutAdmin, refreshToken };
+module.exports = {
+  loginAdmin,
+  registerAdmin,
+  getProfile,
+  changePassword,
+  resetForgotPassword,
+  updateAdminRole,
+  logoutAdmin,
+  refreshToken,
+};
