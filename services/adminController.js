@@ -1,7 +1,83 @@
 const Admin = require("../Models/Admin");
-const generateToken = require("../services/generateToken");
+const Otp = require("../Models/Otp");
+const bcrypt = require("bcryptjs");
+const { generateOTP, sendAdminInviteEmail } = require("./emailService");
 const { logAction } = require("../Middleware/auditLogger");
 const { AppError, catchAsync } = require("../Middleware/errorHandler");
+
+const ACTIVATION_OTP_PURPOSE = "admin-activation";
+const ACTIVATION_OTP_EXPIRY_MINUTES = 72 * 60;
+
+const mapInviteEmailErrorMessage = (emailErr) => {
+  const message = (emailErr?.message || "").toLowerCase();
+
+  if (message.includes("email not configured")) {
+    return "Email service is not configured on the server. Contact admin.";
+  }
+
+  if (message.includes("invalid login") || message.includes("auth")) {
+    return "Email authentication failed. Check SMTP_* or EMAIL_USER/EMAIL_PASS.";
+  }
+
+  if (
+    message.includes("etimedout") ||
+    message.includes("timed out") ||
+    message.includes("timeout") ||
+    message.includes("econnrefused") ||
+    message.includes("ehostunreach") ||
+    message.includes("enotfound")
+  ) {
+    return "Unable to reach email server. Check SMTP_HOST/SMTP_PORT and firewall/network settings.";
+  }
+
+  return "Failed to send activation OTP. Please try again.";
+};
+
+const createTemporaryPassword = () => `Tmp@${Math.random().toString(36).slice(2, 10)}A1!`;
+
+const buildOtp = () => {
+  const generatedOtp = typeof generateOTP === "function" ? generateOTP() : null;
+  if (generatedOtp) {
+    return generatedOtp;
+  }
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
+const hashOtp = async (otp) => bcrypt.hash(otp, 10);
+
+const buildActivationLink = (email) => {
+  const configuredBase =
+    process.env.ADMIN_ACTIVATION_URL ||
+    process.env.FRONTEND_URL ||
+    "http://localhost:5173/admin-activate";
+  const normalizedBase = configuredBase.includes("/admin-activate")
+    ? configuredBase
+    : `${configuredBase.replace(/\/+$/, "")}/admin-activate`;
+  const params = new URLSearchParams({ email });
+  const separator = normalizedBase.includes("?") ? "&" : "?";
+  return `${normalizedBase}${separator}${params.toString()}`;
+};
+
+const createAndSendActivationOtp = async (email, role) => {
+  await Otp.deleteMany({ email, purpose: ACTIVATION_OTP_PURPOSE });
+
+  const otp = buildOtp();
+  const otpHash = await hashOtp(otp);
+  const expiresAt = new Date(Date.now() + ACTIVATION_OTP_EXPIRY_MINUTES * 60 * 1000);
+
+  await Otp.create({
+    email,
+    otp: otpHash,
+    purpose: ACTIVATION_OTP_PURPOSE,
+    expiresAt,
+  });
+
+  if (process.env.NODE_ENV === "test") {
+    return;
+  }
+
+  await sendAdminInviteEmail(email, otp, buildActivationLink(email), role);
+};
 
 // @desc    List all admin accounts
 // @route   GET /api/admins
@@ -51,41 +127,57 @@ const getAllAdmins = catchAsync(async (req, res) => {
 // @route   POST /api/admins
 // @access  Private / Super Admin only
 const createAdmin = catchAsync(async (req, res) => {
-  const { name, email, password, role, profile_image } = req.body;
+  const email = req.body?.email?.trim()?.toLowerCase();
+  const role = req.body?.role || "Admin";
 
-  if (!name || !email || !password) {
-    throw new AppError("Please provide name, email, and password", 400);
+  if (!email) {
+    throw new AppError("Please provide email", 400);
   }
 
   const existingAdmin = await Admin.findOne({ email });
 
   if (existingAdmin) {
+    if (existingAdmin.activation_required) {
+      throw new AppError("An invite is already pending for this email", 409);
+    }
     throw new AppError("Admin with this email already exists", 409);
   }
 
   const admin = await Admin.create({
-    name,
+    name: "Pending Admin",
     email,
-    password,
-    role: role || "Admin",
-    profile_image: profile_image || "",
+    password: createTemporaryPassword(),
+    role,
+    profile_image: "",
     is_active: true,
+    activation_required: true,
+    is_password_set: false,
+    invited_at: new Date(),
+    activation_completed_at: null,
   });
+
+  try {
+    await createAndSendActivationOtp(email, role);
+  } catch (emailErr) {
+    await Admin.findByIdAndDelete(admin._id);
+    console.error("Invite OTP email failed:", emailErr.message);
+    throw new AppError(mapInviteEmailErrorMessage(emailErr), 503);
+  }
 
   await logAction({
     user: req.admin,
     action: "CREATE",
     resourceType: "Admin",
     resourceId: admin._id.toString(),
-    description: `Admin account created: ${admin.name} (${admin.email}) with role ${admin.role}`,
+    description: `Admin invite created for ${admin.email} with role ${admin.role}`,
     req,
-    changes: { name, email, role: admin.role, is_active: true },
+    changes: { email, role: admin.role, activation_required: true, is_active: true },
     status: "SUCCESS"
   });
 
   res.status(201).json({
     success: true,
-    message: "Admin account created successfully",
+    message: "Admin invite sent successfully. Activation OTP is valid for 72 hours.",
     admin: {
       _id: admin._id,
       name: admin.name,
@@ -93,8 +185,54 @@ const createAdmin = catchAsync(async (req, res) => {
       role: admin.role,
       profile_image: admin.profile_image,
       is_active: admin.is_active,
+      activation_required: admin.activation_required,
+      is_password_set: admin.is_password_set,
+      invited_at: admin.invited_at,
       createdAt: admin.createdAt,
     },
+  });
+});
+
+// @desc    Withdraw pending admin invite
+// @route   PATCH /api/admins/:id/withdraw-invite
+// @access  Private / Super Admin only
+const withdrawInvite = catchAsync(async (req, res) => {
+  const admin = await Admin.findById(req.params.id);
+
+  if (!admin) {
+    throw new AppError("Admin not found", 404);
+  }
+
+  if (req.admin._id.toString() === admin._id.toString()) {
+    throw new AppError("Cannot withdraw your own account invite", 403);
+  }
+
+  const isPendingInvite = admin.activation_required || !admin.is_password_set;
+  if (!isPendingInvite) {
+    throw new AppError("Only pending invites can be withdrawn", 400);
+  }
+
+  await Otp.deleteMany({
+    email: admin.email,
+    purpose: ACTIVATION_OTP_PURPOSE,
+  });
+
+  await Admin.findByIdAndDelete(admin._id);
+
+  await logAction({
+    user: req.admin,
+    action: "DELETE",
+    resourceType: "Admin",
+    resourceId: admin._id.toString(),
+    description: `Admin invite withdrawn: ${admin.email}`,
+    req,
+    changes: { withdrawn_invite: { email: admin.email, role: admin.role } },
+    status: "SUCCESS"
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "Invite withdrawn successfully",
   });
 });
 
@@ -264,6 +402,7 @@ module.exports = {
   createAdmin,
   getAdminById,
   updateAdmin,
+  withdrawInvite,
   demoteAdmin,
   deleteAdmin,
 };

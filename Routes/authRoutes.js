@@ -3,6 +3,8 @@ const router = express.Router();
 const {
   loginAdmin,
   registerAdmin,
+  resendActivationOtp,
+  activateAdmin,
   getProfile,
   changePassword,
   resetForgotPassword,
@@ -16,6 +18,8 @@ const {
   validate,
   loginSchema,
   registerAdminSchema,
+  emailSchema,
+  activateAdminSchema,
   changePasswordSchema,
   forgotPasswordResetSchema,
 } = require("../Middleware/validator");
@@ -31,6 +35,8 @@ router.get("/csrf-token", (req, res) => {
 // Public - with strict rate limiting
 router.post("/login", authLimiter, validate(loginSchema), loginAdmin);
 router.post("/forgot-password/reset", authLimiter, validate(forgotPasswordResetSchema), resetForgotPassword);
+router.post("/resend-activation-otp", authLimiter, validate(emailSchema), resendActivationOtp);
+router.post("/activate-admin", authLimiter, validate(activateAdminSchema), activateAdmin);
 
 // Protected routes
 router.post("/logout", protect, logoutAdmin);

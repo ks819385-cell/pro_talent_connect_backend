@@ -4,7 +4,14 @@ const bcrypt = require("bcryptjs");
 const { generateOTP, sendOTPEmail } = require("./emailService");
 const { AppError, catchAsync } = require("../Middleware/errorHandler");
 
-const OTP_EXPIRY_MINUTES = 10;
+const OTP_EXPIRY_MINUTES_BY_PURPOSE = {
+  "player-creation": 10,
+  "change-password": 10,
+  "forgot-password": 10,
+  "admin-activation": 72 * 60,
+};
+
+const getOtpExpiryMinutes = (purpose) => OTP_EXPIRY_MINUTES_BY_PURPOSE[purpose] || 10;
 
 const hashOtp = async (otp) => bcrypt.hash(otp, 10);
 
@@ -33,7 +40,7 @@ const sendPlayerOtp = catchAsync(async (req, res) => {
 
   const otp = generateOTP();
   const otpHash = await hashOtp(otp);
-  const expiresAt = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000);
+  const expiresAt = new Date(Date.now() + getOtpExpiryMinutes("player-creation") * 60 * 1000);
 
   await Otp.create({ email, otp: otpHash, purpose: "player-creation", expiresAt });
 
@@ -97,7 +104,7 @@ const sendPasswordOtp = catchAsync(async (req, res) => {
 
   const otp = generateOTP();
   const otpHash = await hashOtp(otp);
-  const expiresAt = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000);
+  const expiresAt = new Date(Date.now() + getOtpExpiryMinutes("change-password") * 60 * 1000);
 
   await Otp.create({
     email: admin.email,
@@ -147,7 +154,7 @@ const sendForgotPasswordOtp = catchAsync(async (req, res) => {
 
   const otp = generateOTP();
   const otpHash = await hashOtp(otp);
-  const expiresAt = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000);
+  const expiresAt = new Date(Date.now() + getOtpExpiryMinutes("forgot-password") * 60 * 1000);
 
   await Otp.create({
     email,

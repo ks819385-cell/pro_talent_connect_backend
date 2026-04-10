@@ -14,9 +14,20 @@ const loginSchema = Joi.object({
 });
 
 const registerAdminSchema = Joi.object({
-  name: Joi.string().min(2).max(100).required().trim(),
   email: Joi.string().email().required().trim().lowercase(),
-  password: Joi.string()
+  role: Joi.string().valid('Admin', 'Super Admin').default('Admin'),
+});
+
+const inviteAdminSchema = Joi.object({
+  email: Joi.string().email().required().trim().lowercase(),
+  role: Joi.string().valid('Admin', 'Super Admin').default('Admin'),
+});
+
+const activateAdminSchema = Joi.object({
+  email: Joi.string().email().required().trim().lowercase(),
+  name: Joi.string().min(2).max(100).required().trim(),
+  otp: Joi.string().length(6).pattern(/^\d+$/).required(),
+  newPassword: Joi.string()
     .min(8)
     .max(128)
     .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/)
@@ -25,7 +36,9 @@ const registerAdminSchema = Joi.object({
       'string.pattern.base': 'Password must contain uppercase, lowercase, number, and special character',
       'string.min': 'Password must be at least 8 characters long',
     }),
-  role: Joi.string().valid('Admin', 'Super Admin').default('Admin'),
+  confirmPassword: Joi.string().required().valid(Joi.ref('newPassword')).messages({
+    'any.only': 'New password and confirm password must match',
+  }),
 });
 
 const changePasswordSchema = Joi.object({
@@ -268,6 +281,8 @@ module.exports = {
   validate,
   loginSchema,
   registerAdminSchema,
+  inviteAdminSchema,
+  activateAdminSchema,
   changePasswordSchema,
   forgotPasswordResetSchema,
   emailSchema,

@@ -30,6 +30,14 @@ const protect = async (req, res, next) => {
       // Also attach as req.user for convenience
       req.user = req.admin;
 
+      if (req.admin.activation_required || !req.admin.is_password_set) {
+        return res.status(403).json({
+          success: false,
+          code: "ACTIVATION_REQUIRED",
+          message: "Account activation is pending. Verify OTP and set your password to continue.",
+        });
+      }
+
       next();
     } catch (error) {
       console.error("Auth error:", error.message);

@@ -31,6 +31,22 @@ const adminSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    activation_required: {
+      type: Boolean,
+      default: false,
+    },
+    is_password_set: {
+      type: Boolean,
+      default: true,
+    },
+    invited_at: {
+      type: Date,
+      default: null,
+    },
+    activation_completed_at: {
+      type: Date,
+      default: null,
+    },
     last_login: {
       type: Date,
       default: null,
@@ -68,10 +84,14 @@ adminSchema.pre("save", async function () {
 
 // Method to check password
 adminSchema.methods.matchPassword = async function (enteredPassword) {
+  if (!this.password) {
+    return false;
+  }
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
 // Add index for faster lookups (email index already created by unique: true)
 adminSchema.index({ is_active: 1 });
+adminSchema.index({ activation_required: 1 });
 
 module.exports = mongoose.model("Admin", adminSchema);
