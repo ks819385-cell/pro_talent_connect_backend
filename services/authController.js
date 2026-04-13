@@ -27,6 +27,15 @@ const mapEmailErrorMessage = (emailErr) => {
 
   const message = emailErr.message.toLowerCase();
 
+  if (
+    message.includes("activation link") ||
+    message.includes("activation url") ||
+    message.includes("frontend_url") ||
+    message.includes("admin_activation_url")
+  ) {
+    return "Activation link is not configured for production. Set ADMIN_ACTIVATION_URL or FRONTEND_URL.";
+  }
+
   if (message.includes("email not configured")) {
     return "Email service is not configured on the server. Contact admin.";
   }
@@ -62,13 +71,33 @@ const buildOtp = () => {
 const hashOtp = async (otp) => bcrypt.hash(otp, 10);
 
 const buildActivationLink = (email) => {
-  const configuredBase =
-    process.env.ADMIN_ACTIVATION_URL ||
-    process.env.FRONTEND_URL ||
-    "http://localhost:5173/admin-activate";
+  const configuredBase = (process.env.ADMIN_ACTIVATION_URL || process.env.FRONTEND_URL || "").trim();
+
+  if (!configuredBase) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "Activation URL is missing. Configure ADMIN_ACTIVATION_URL or FRONTEND_URL in production.",
+      );
+    }
+
+    const localBase = "http://localhost:5173/admin-activate";
+    const params = new URLSearchParams({ email });
+    return `${localBase}?${params.toString()}`;
+  }
+
   const normalizedBase = configuredBase.includes("/admin-activate")
     ? configuredBase
     : `${configuredBase.replace(/\/+$/, "")}/admin-activate`;
+
+  if (
+    process.env.NODE_ENV === "production" &&
+    /localhost|127\.0\.0\.1/i.test(normalizedBase)
+  ) {
+    throw new Error(
+      "Activation URL points to localhost in production. Set ADMIN_ACTIVATION_URL or FRONTEND_URL to your live frontend domain.",
+    );
+  }
+
   const params = new URLSearchParams({ email });
   const separator = normalizedBase.includes("?") ? "&" : "?";
   return `${normalizedBase}${separator}${params.toString()}`;

@@ -34,6 +34,23 @@ const validateEnv = () => {
     process.exit(1);
   }
 
+  if (process.env.NODE_ENV === 'production') {
+    const activationUrl =
+      (process.env.ADMIN_ACTIVATION_URL && process.env.ADMIN_ACTIVATION_URL.trim()) ||
+      (process.env.FRONTEND_URL && process.env.FRONTEND_URL.trim()) ||
+      '';
+
+    if (!activationUrl) {
+      console.error('❌ FATAL ERROR: In production, set ADMIN_ACTIVATION_URL or FRONTEND_URL');
+      process.exit(1);
+    }
+
+    if (/localhost|127\.0\.0\.1/i.test(activationUrl)) {
+      console.error('❌ FATAL ERROR: ADMIN_ACTIVATION_URL/FRONTEND_URL cannot point to localhost in production');
+      process.exit(1);
+    }
+  }
+
   console.log('✅ Environment variables validated successfully');
 };
 
