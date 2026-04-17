@@ -1,5 +1,96 @@
 const mongoose = require("mongoose");
 
+const partnerSocialLinkSchema = new mongoose.Schema(
+  {
+    handle: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    url: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+  },
+  {
+    _id: false,
+  },
+);
+
+const partnerSocialSchema = new mongoose.Schema(
+  {
+    instagram: { type: partnerSocialLinkSchema, default: () => ({}) },
+    twitter: { type: partnerSocialLinkSchema, default: () => ({}) },
+    linkedin: { type: partnerSocialLinkSchema, default: () => ({}) },
+    facebook: { type: partnerSocialLinkSchema, default: () => ({}) },
+    youtube: { type: partnerSocialLinkSchema, default: () => ({}) },
+    website: { type: partnerSocialLinkSchema, default: () => ({}) },
+  },
+  {
+    _id: false,
+    minimize: false,
+  },
+);
+
+const partnerSchema = new mongoose.Schema(
+  {
+    id: {
+      type: String,
+      trim: true,
+      default: () => new mongoose.Types.ObjectId().toString(),
+    },
+    name: {
+      type: String,
+      required: [true, "Partner name is required"],
+      trim: true,
+    },
+    type: {
+      type: String,
+      required: [true, "Partner type is required"],
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: [true, "Partner description is required"],
+      trim: true,
+    },
+    avatar: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    logoUrl: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    avatarColor: {
+      type: String,
+      trim: true,
+      default: "from-red-500/30 to-red-900/30",
+    },
+    borderColor: {
+      type: String,
+      trim: true,
+      default: "border-red-500/20",
+    },
+    accentColor: {
+      type: String,
+      trim: true,
+      default: "text-red-400",
+    },
+    social: {
+      type: partnerSocialSchema,
+      default: () => ({}),
+    },
+  },
+  {
+    _id: false,
+    minimize: false,
+  },
+);
+
 const aboutSchema = new mongoose.Schema(
   {
     org_name: {
@@ -75,6 +166,10 @@ const aboutSchema = new mongoose.Schema(
         trim: true,
       },
     },
+    partners: {
+      type: [partnerSchema],
+      default: [],
+    },
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt
@@ -101,6 +196,7 @@ aboutSchema.statics.getSingleton = async function () {
         logo_url: "",
       },
       social_links: {},
+      partners: [],
     });
   }
   return about;

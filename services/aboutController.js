@@ -1,6 +1,49 @@
 const About = require("../Models/About");
+const mongoose = require("mongoose");
 const { logAction } = require("../Middleware/auditLogger");
 const { AppError, catchAsync } = require("../Middleware/errorHandler");
+
+const PARTNER_SOCIAL_PLATFORMS = [
+  "instagram",
+  "twitter",
+  "linkedin",
+  "facebook",
+  "youtube",
+  "website",
+];
+
+const toTrimmedString = (value) =>
+  typeof value === "string" ? value.trim() : "";
+
+const normalizePartnerSocial = (social = {}) => {
+  const normalized = {};
+
+  PARTNER_SOCIAL_PLATFORMS.forEach((platform) => {
+    const handle = toTrimmedString(social?.[platform]?.handle);
+    const url = toTrimmedString(social?.[platform]?.url);
+
+    if (handle || url) {
+      normalized[platform] = { handle, url };
+    }
+  });
+
+  return normalized;
+};
+
+const normalizePartners = (partners = []) =>
+  partners.map((partner) => ({
+    id: toTrimmedString(partner?.id) || new mongoose.Types.ObjectId().toString(),
+    name: toTrimmedString(partner?.name),
+    type: toTrimmedString(partner?.type),
+    description: toTrimmedString(partner?.description),
+    avatar: toTrimmedString(partner?.avatar),
+    logoUrl: toTrimmedString(partner?.logoUrl),
+    avatarColor:
+      toTrimmedString(partner?.avatarColor) || "from-red-500/30 to-red-900/30",
+    borderColor: toTrimmedString(partner?.borderColor) || "border-red-500/20",
+    accentColor: toTrimmedString(partner?.accentColor) || "text-red-400",
+    social: normalizePartnerSocial(partner?.social),
+  }));
 
 // @desc    Get organisation profile
 // @route   GET /api/about
@@ -11,6 +54,18 @@ const getAbout = catchAsync(async (req, res) => {
   res.status(200).json({
     success: true,
     about,
+  });
+});
+
+// @desc    Get partners and collaborators list
+// @route   GET /api/about/partners
+// @access  Public
+const getPartners = catchAsync(async (req, res) => {
+  const about = await About.getSingleton();
+
+  res.status(200).json({
+    success: true,
+    partners: about.partners || [],
   });
 });
 
@@ -31,6 +86,7 @@ const updateAbout = catchAsync(async (req, res) => {
     "images",
     "pro_talent_plus",
     "social_links",
+    "partners",
   ];
 
   updatableFields.forEach((field) => {
@@ -58,6 +114,52 @@ const updateAbout = catchAsync(async (req, res) => {
     success: true,
     message: "Organisation profile updated successfully",
     about: updatedAbout,
+  });
+});
+
+// @desc    Replace full partners and collaborators list
+// @route   PUT /api/about/partners
+// @access  Private / Super Admin only
+const updatePartners = catchAsync(async (req, res) => {
+  const { partners } = req.body;
+
+  if (!Array.isArray(partners)) {
+    throw new AppError("Partners must be provided as an array", 400);
+  }
+
+  const normalizedPartners = normalizePartners(partners);
+  const hasMissingRequiredFields = normalizedPartners.some(
+    (partner) => !partner.name || !partner.type || !partner.description,
+  );
+
+  if (hasMissingRequiredFields) {
+    throw new AppError(
+      "Each partner requires name, type, and description",
+      400,
+    );
+  }
+
+  const about = await About.getSingleton();
+  about.partners = normalizedPartners;
+  about.markModified("partners");
+
+  const updatedAbout = await about.save();
+
+  await logAction({
+    user: req.user || req.admin,
+    action: "UPDATE",
+    resourceType: "About",
+    resourceId: updatedAbout._id.toString(),
+    description: `Updated partners list (${updatedAbout.partners.length} item(s))`,
+    req,
+    changes: { partners: updatedAbout.partners },
+    status: "SUCCESS",
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "Partners updated successfully",
+    partners: updatedAbout.partners,
   });
 });
 
@@ -101,6 +203,8 @@ const uploadImages = catchAsync(async (req, res) => {
 
 module.exports = {
   getAbout,
+  getPartners,
   updateAbout,
+  updatePartners,
   uploadImages,
 };
