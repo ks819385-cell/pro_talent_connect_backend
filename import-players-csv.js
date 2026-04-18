@@ -18,9 +18,11 @@ const mongoose = require("mongoose");
 const Player = require("./Models/Players");
 const { calculateScoutReport } = require("./services/scoutReportCalculator");
 
-const CSV_PATH = path.join(__dirname, "..", "CRM Master Player Database of 75 Players - Copy.csv");
+const CSV_PATH = path.join(__dirname, "CRM Master Player Database 190 Players.csv");
 const UPDATE_MODE = process.argv.includes("--update");
 const MISSING_ID_LABEL = "Player Has No ID";
+const FALLBACK_DOB = new Date("1970-01-01T00:00:00.000Z");
+const FALLBACK_MOBILE = "0000000000";
 
 // ─── Helpers ───
 
@@ -29,6 +31,15 @@ function parseDate(dateStr) {
   // Format: "13-Sep-2003" or similar
   const d = new Date(dateStr);
   return isNaN(d.getTime()) ? null : d;
+}
+
+function buildFallbackDob(age) {
+  const parsedAge = Number.parseInt(age, 10);
+  if (!Number.isNaN(parsedAge) && parsedAge > 0) {
+    const year = new Date().getUTCFullYear() - parsedAge;
+    return new Date(Date.UTC(year, 0, 1));
+  }
+  return FALLBACK_DOB;
 }
 
 function getAgeGroup(age) {
@@ -89,6 +100,18 @@ function parsePosition(positionStr) {
 
 function generateMissingPlayerId() {
   return MISSING_ID_LABEL;
+}
+
+function normalizePlayerId(rawPlayerId) {
+  const id = rawPlayerId?.trim();
+  if (!id || id.toUpperCase() === "N/A") return MISSING_ID_LABEL;
+
+  const upper = id.toUpperCase();
+  if (!/^PL\d+$/.test(upper)) return id;
+
+  const digits = upper.slice(2);
+  if (digits.length >= 10) return `PL${digits}`;
+  return `PL${digits.padStart(10, "0")}`;
 }
 
 // ─── Competition Type Auto-Detection ───
@@ -199,12 +222,16 @@ async function importPlayers() {
 
   const rawCsv = fs.readFileSync(CSV_PATH, "utf-8");
 
-  // The CSV has 2 header/title rows before the actual column headers (row 3)
-  const lines = rawCsv.split("\n");
-  // Find the header row (starts with "S.No")
+  const lines = rawCsv.split(/\r?\n/);
+  // Find header row in a tolerant way (BOM/quotes/spacing variants)
   let headerIndex = -1;
-  for (let i = 0; i < Math.min(10, lines.length); i++) {
-    if (lines[i].startsWith("S.No")) {
+  for (let i = 0; i < Math.min(20, lines.length); i++) {
+    const normalized = lines[i]
+      .replace(/^\uFEFF/, "")
+      .replace(/"/g, "")
+      .trim()
+      .toLowerCase();
+    if (normalized.startsWith("s.no,") && normalized.includes("name") && normalized.includes("email")) {
       headerIndex = i;
       break;
     }
@@ -243,7 +270,13 @@ async function importPlayers() {
   ).lean();
 
   const existingEmailMap = new Map(existingPlayers.map((p) => [p.email?.toLowerCase(), p]));
-  const existingPlayerIds = new Set(existingPlayers.map((p) => p.playerId));
+  const existingPlayerIds = new Set(
+    existingPlayers
+      .flatMap((p) => [p.playerId, normalizePlayerId(p.playerId)])
+      .filter(Boolean)
+  );
+  const seenEmails = new Set(existingPlayers.map((p) => p.email?.toLowerCase()).filter(Boolean));
+  const seenPlayerIds = new Set(existingPlayers.map((p) => p.playerId).filter(Boolean));
 
   console.log(`📊 Found ${existingPlayers.length} existing players in database`);
   console.log(`🔄 Mode: ${UPDATE_MODE ? "UPDATE competitions & scores" : "INSERT new players only"}`);
@@ -258,6 +291,7 @@ async function importPlayers() {
   const addedPlayers = [];
   const updatedPlayers = [];
   const errorPlayers = [];
+  const duplicateCsvPlayers = [];
 
   for (const row of records) {
     const name = row["Name"]?.trim();
@@ -277,9 +311,10 @@ async function importPlayers() {
     // Map CSV fields to Player model
     const { primary, alternative } = parsePosition(row["Position"]);
     const { state, nationality } = extractStateAndNationality(row["Place of Birth"]);
-    const hasValidPlayerId = !!(rawPlayerId && rawPlayerId !== "N/A");
-    const playerId = hasValidPlayerId ? rawPlayerId : generateMissingPlayerId();
-    const dob = parseDate(row["Date of Birth"]);
+    const normalizedPlayerId = normalizePlayerId(rawPlayerId);
+    const hasValidPlayerId = normalizedPlayerId !== MISSING_ID_LABEL;
+    const playerId = hasValidPlayerId ? normalizedPlayerId : generateMissingPlayerId();
+    const dob = parseDate(row["Date of Birth"]) || buildFallbackDob(row["Age"]);
     const age = parseInt(row["Age"]) || null;
     const height = parseInt(row["Height (cms)"]) || undefined;
     const weight = parseInt(row["Weight (kg)"]) || undefined;
@@ -339,9 +374,21 @@ async function importPlayers() {
       continue;
     }
 
+    if (seenEmails.has(email)) {
+      duplicateCsvPlayers.push(`${name} (${email})`);
+      skipped++;
+      continue;
+    }
+
     // Also check by playerId if not N/A
-    if (rawPlayerId && rawPlayerId !== "N/A" && existingPlayerIds.has(rawPlayerId)) {
-      skippedPlayers.push(`${name} (${rawPlayerId})`);
+    if (hasValidPlayerId && existingPlayerIds.has(normalizedPlayerId)) {
+      skippedPlayers.push(`${name} (${normalizedPlayerId})`);
+      skipped++;
+      continue;
+    }
+
+    if (hasValidPlayerId && seenPlayerIds.has(normalizedPlayerId)) {
+      duplicateCsvPlayers.push(`${name} (${normalizedPlayerId})`);
       skipped++;
       continue;
     }
@@ -374,10 +421,10 @@ async function importPlayers() {
       alternativePosition: alternative,
       height,
       weight,
-      gender: row["Gender"]?.trim() || "Male",
+      gender: row["Gender"]?.trim() || "Other",
       state,
       nationality,
-      mobileNumber: row["Contact Number"]?.trim() || "N/A",
+      mobileNumber: row["Contact Number"]?.trim() || FALLBACK_MOBILE,
       currentLeague: row["Current Club"]?.trim() || "",
       stateLeague,
       career_history: [
@@ -389,12 +436,16 @@ async function importPlayers() {
       competitions,
       clubsPlayed,
       transferMarketLink,
-      plId: hasValidPlayerId ? rawPlayerId : MISSING_ID_LABEL,
+      plId: hasValidPlayerId ? playerId : MISSING_ID_LABEL,
       scoutReport,
     };
 
     try {
       await Player.create(playerData);
+      seenEmails.add(email);
+      if (hasValidPlayerId) {
+        seenPlayerIds.add(normalizedPlayerId);
+      }
       addedPlayers.push(`${name} — Score: ${scoutReport.totalScore} (${scoutReport.grade}) | ${competitions.length} competitions`);
       added++;
     } catch (err) {
@@ -426,6 +477,11 @@ async function importPlayers() {
   if (skippedPlayers.length > 0) {
     console.log(`\n⏭️  Already in database:`);
     skippedPlayers.forEach((p) => console.log(`   - ${p}`));
+  }
+
+  if (duplicateCsvPlayers.length > 0) {
+    console.log(`\n🧾 Duplicate rows within CSV (skipped):`);
+    duplicateCsvPlayers.forEach((p) => console.log(`   - ${p}`));
   }
 
   if (errorPlayers.length > 0) {

@@ -5,6 +5,130 @@ const { AppError, catchAsync } = require("../Middleware/errorHandler");
 
 const MISSING_ID_LABEL = "Player Has No ID";
 
+function escapeRegex(value = "") {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function parseNumericFilter(value) {
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function buildPlayerFilter(query, { requireSearch = false } = {}) {
+  const filter = { isDeleted: { $ne: true } };
+  const orConditions = [];
+
+  const searchQuery = query.searchQuery?.trim() || query.q?.trim() || "";
+  if (searchQuery) {
+    const escaped = escapeRegex(searchQuery);
+    orConditions.push(
+      { name: { $regex: escaped, $options: "i" } },
+      { playingPosition: { $regex: escaped, $options: "i" } },
+      { alternativePosition: { $regex: escaped, $options: "i" } },
+      { state: { $regex: escaped, $options: "i" } },
+      { nationality: { $regex: escaped, $options: "i" } },
+      { email: { $regex: escaped, $options: "i" } },
+      { playerId: { $regex: escaped, $options: "i" } },
+    );
+  }
+
+  const position = query.position?.trim() || query.playingPosition?.trim() || "";
+  if (position) {
+    const escaped = escapeRegex(position);
+    orConditions.push(
+      { playingPosition: { $regex: escaped, $options: "i" } },
+      { alternativePosition: { $regex: escaped, $options: "i" } },
+    );
+  }
+
+  const state = query.state?.trim() || "";
+  if (state) {
+    filter.state = { $regex: escapeRegex(state), $options: "i" };
+  }
+
+  if (query.gender) {
+    filter.gender = query.gender;
+  }
+
+  if (query.age_group) {
+    filter.age_group = query.age_group;
+  }
+
+  if (query.preferredFoot) {
+    filter.preferredFoot = query.preferredFoot;
+  }
+
+  const ageMin = parseNumericFilter(query.ageMin);
+  const ageMax = parseNumericFilter(query.ageMax);
+  if (ageMin !== null || ageMax !== null) {
+    filter.age = {};
+    if (ageMin !== null) filter.age.$gte = ageMin;
+    if (ageMax !== null) filter.age.$lte = ageMax;
+  }
+
+  const heightMin = parseNumericFilter(query.heightMin);
+  const heightMax = parseNumericFilter(query.heightMax);
+  if (heightMin !== null || heightMax !== null) {
+    filter.height = {};
+    if (heightMin !== null) filter.height.$gte = heightMin;
+    if (heightMax !== null) filter.height.$lte = heightMax;
+  }
+
+  const weightMin = parseNumericFilter(query.weightMin);
+  const weightMax = parseNumericFilter(query.weightMax);
+  if (weightMin !== null || weightMax !== null) {
+    filter.weight = {};
+    if (weightMin !== null) filter.weight.$gte = weightMin;
+    if (weightMax !== null) filter.weight.$lte = weightMax;
+  }
+
+  if (orConditions.length > 0) {
+    filter.$or = orConditions;
+  }
+
+  const hasAnyCriteria = [
+    searchQuery,
+    position,
+    state,
+    query.gender,
+    query.age_group,
+    query.preferredFoot,
+    query.ageMin,
+    query.ageMax,
+    query.heightMin,
+    query.heightMax,
+    query.weightMin,
+    query.weightMax,
+  ].some(Boolean);
+
+  if (requireSearch && !hasAnyCriteria) {
+    throw new AppError("Please provide at least one search parameter", 400);
+  }
+
+  return filter;
+}
+
+function buildPlayerSort(query) {
+  const sortBy = (query.sortBy || "createdAt").trim();
+  const sortOrder = query.sortOrder === "asc" ? 1 : -1;
+
+  switch (sortBy) {
+    case "name":
+      return { name: sortOrder, createdAt: -1 };
+    case "age":
+      return { age: sortOrder, createdAt: -1 };
+    case "height":
+      return { height: sortOrder, createdAt: -1 };
+    case "score":
+      return { "scoutReport.totalScore": sortOrder, createdAt: -1 };
+    case "position":
+      return { playingPosition: sortOrder, name: 1 };
+    case "createdAt":
+    default:
+      return { createdAt: -1 };
+  }
+}
+
 // @desc    Create a new player
 // @route   POST /api/players
 // @access  Private / Super Admin Only
@@ -198,30 +322,12 @@ const createPlayer = catchAsync(async (req, res) => {
 // @route   GET /api/players
 // @access  Private / Admin & Super Admin
 const getAllPlayers = catchAsync(async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+    const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 10, 1), 100);
     const skip = (page - 1) * limit;
 
-    // Build filter from query params (exclude soft-deleted)
-    const filter = { isDeleted: { $ne: true } };
-    if (req.query.name) {
-      filter.name = { $regex: req.query.name, $options: "i" };
-    }
-    if (req.query.playingPosition) {
-      filter.playingPosition = {
-        $regex: req.query.playingPosition,
-        $options: "i",
-      };
-    }
-    if (req.query.gender) {
-      filter.gender = req.query.gender;
-    }
-    if (req.query.age_group) {
-      filter.age_group = req.query.age_group;
-    }
-    if (req.query.preferredFoot) {
-      filter.preferredFoot = req.query.preferredFoot;
-    }
+    const filter = buildPlayerFilter(req.query);
+    const sort = buildPlayerSort(req.query);
 
     const totalResults = await Player.countDocuments(filter);
     const totalPages = Math.ceil(totalResults / limit);
@@ -236,7 +342,7 @@ const getAllPlayers = catchAsync(async (req, res) => {
         select: "name email role",
         strictPopulate: false,
       })
-      .sort({ createdAt: -1 })
+      .sort(sort)
       .skip(skip)
       .limit(limit);
 
@@ -254,45 +360,12 @@ const getAllPlayers = catchAsync(async (req, res) => {
 // @route   GET /api/players/search
 // @access  Private / Admin & Super Admin
 const searchPlayers = catchAsync(async (req, res) => {
-    const { name, state, age_group, position, gender } = req.query;
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+    const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 10, 1), 100);
     const skip = (page - 1) * limit;
 
-    // Build dynamic search query
-    const filter = { isDeleted: { $ne: true } };
-    const orConditions = [];
-
-    if (name) {
-      orConditions.push({ name: { $regex: name, $options: "i" } });
-    }
-    if (state) {
-      orConditions.push({ state: { $regex: state, $options: "i" } });
-    }
-    if (position) {
-      orConditions.push(
-        { playingPosition: { $regex: position, $options: "i" } },
-        { alternativePosition: { $regex: position, $options: "i" } },
-      );
-    }
-
-    // Exact match filters
-    if (age_group) {
-      filter.age_group = age_group;
-    }
-    if (gender) {
-      filter.gender = gender;
-    }
-
-    // Combine OR conditions if any exist
-    if (orConditions.length > 0) {
-      filter.$or = orConditions;
-    }
-
-    // If no search criteria provided
-    if (!name && !state && !age_group && !position && !gender) {
-      throw new AppError("Please provide at least one search parameter: name, state, age_group, position, or gender", 400);
-    }
+    const filter = buildPlayerFilter(req.query, { requireSearch: true });
+    const sort = buildPlayerSort(req.query);
 
     const totalResults = await Player.countDocuments(filter);
     const totalPages = Math.ceil(totalResults / limit);
@@ -307,7 +380,7 @@ const searchPlayers = catchAsync(async (req, res) => {
         select: "name email role",
         strictPopulate: false,
       })
-      .sort({ createdAt: -1 })
+      .sort(sort)
       .skip(skip)
       .limit(limit);
 
