@@ -53,6 +53,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Local data files
+CRM Master Player Database 190 Players.csv
+
 # System files
 .DS_Store
 Thumbs.db
