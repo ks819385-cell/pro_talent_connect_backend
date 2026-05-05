@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const { generateOTP, sendAdminInviteEmail } = require("./emailService");
 const { logAction } = require("../Middleware/auditLogger");
 const { AppError, catchAsync } = require("../Middleware/errorHandler");
+const logger = require("../config/logger");
 
 const ACTIVATION_OTP_PURPOSE = "admin-activation";
 const ACTIVATION_OTP_EXPIRY_MINUTES = 72 * 60;
@@ -426,6 +427,85 @@ const deleteAdmin = catchAsync(async (req, res) => {
   });
 });
 
+// @desc    Recalculate scout report scores for all players
+// @route   POST /api/v1/admin/actions/recalculate-scores
+// @access  Private / Super Admin
+const recalculateAllScores = catchAsync(async (req, res) => {
+  const Player = require("../Models/Players");
+  const { calculateScoutReport } = require("./scoutReportCalculator");
+
+  // Fetch all active players (not soft-deleted)
+  const players = await Player.find({ isDeleted: { $ne: true } });
+  
+  let updated = 0;
+  let unchanged = 0;
+  const updatedPlayers = [];
+
+  for (const player of players) {
+    try {
+      // Calculate new scout report
+      const newScoutReport = calculateScoutReport({
+        age: player.age,
+        height: player.height,
+        weight: player.weight,
+        playingPosition: player.playingPosition,
+        transferMarketLink: player.transferMarketLink,
+        competitions: player.competitions,
+        currentLeague: player.currentLeague,
+        stateLeague: player.stateLeague,
+        clubTier: player.clubTier,
+        clubsPlayed: player.clubsPlayed,
+        sprint30m: player.sprint30m,
+        mentalityScore: player.mentalityScore,
+      });
+
+      // Check if score changed
+      const oldScore = player.scoutReport?.totalScore ?? 0;
+      const newScore = newScoutReport.totalScore;
+      const oldGrade = player.scoutReport?.grade ?? "N/A";
+      const newGrade = newScoutReport.grade;
+
+      if (oldScore !== newScore || oldGrade !== newGrade) {
+        player.scoutReport = newScoutReport;
+        await player.save();
+        updated++;
+        updatedPlayers.push({
+          name: player.name,
+          oldScore: `${oldScore} (${oldGrade})`,
+          newScore: `${newScore} (${newGrade})`,
+        });
+      } else {
+        unchanged++;
+      }
+    } catch (err) {
+      logger.error(`Error recalculating score for player ${player.name}:`, err);
+    }
+  }
+
+  // Log the action
+  await logAction({
+    user: req.user,
+    action: "UPDATE_BATCH",
+    resourceType: "Player",
+    resourceId: "all",
+    description: `Recalculated scout report scores for all players. Updated: ${updated}, Unchanged: ${unchanged}`,
+    req,
+    changes: { updated_count: updated, unchanged_count: unchanged },
+    status: "SUCCESS",
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "Scout report scores recalculated successfully",
+    summary: {
+      totalProcessed: players.length,
+      updated,
+      unchanged,
+      updatedPlayers: updatedPlayers.slice(0, 20), // Return first 20 for preview
+    },
+  });
+});
+
 module.exports = {
   getAllAdmins,
   createAdmin,
@@ -434,4 +514,5 @@ module.exports = {
   withdrawInvite,
   demoteAdmin,
   deleteAdmin,
+  recalculateAllScores,
 };

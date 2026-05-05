@@ -7261,3 +7261,690 @@
 {"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-13 23:14:06"}
 {"level":"info","message":"GET /api/v1/about - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-13 23:23:12"}
 {"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-13 23:23:13"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:42"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-00.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:43"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:43"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:44"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:44"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:44"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:49"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 77","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:49"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 151","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:49"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 24","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:49"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-04-18 16:12:49"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:27"}
+{"level":"info","message":"GET /api/v1/about - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:27"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:38"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-02.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:38"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:39"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:39"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:39"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:39"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:44"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:44"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 24","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:44"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:44"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-04-18 16:13:44"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:02"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-00.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:02"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:02"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:03"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:03"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:03"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:08"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 77","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:08"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 151","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:08"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 24","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:08"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-04-18 16:14:08"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:01"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:12"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:12"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:12"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:12"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:12"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:12"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:12"}
+{"level":"info","message":"POST /api/v1/auth/login - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:21"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:22"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:22"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:22"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:22"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:22"}
+{"level":"info","message":"GET /api/v1/leagues - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:32"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:32"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:39"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:42"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:42"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:42"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:46"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:15:54"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:00"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:02"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:02"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:02"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:04"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:09"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:18"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:22"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:22"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:22"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:24"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:30"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:35"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:16:40"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:17:57"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:17:57"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:17:57"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:17:57"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:17:57"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:17:59"}
+{"level":"info","message":"GET /api/v1/leagues - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:17:59"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:18:03"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:18:04"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:18:05"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:18:10"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:20:45"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:20:46"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:17"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:17"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:17"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:17"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:17"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:21"}
+{"level":"info","message":"GET /api/v1/leagues - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:21"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:25"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:47"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:47"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:21:47"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:14"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-02.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:14"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:15"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:15"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:15"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:15"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:20"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:20"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:20"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 151","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:20"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-04-18 16:23:20"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-04-18 16:24:58"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-00.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-04-18 16:24:59"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-04-18 16:24:59"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-04-18 16:24:59"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-04-18 16:24:59"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-04-18 16:24:59"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-04-18 16:25:04"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-04-18 16:25:04"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-04-18 16:25:05"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-04-18 16:25:05"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-04-18 16:25:05"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:27:08"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:27:08"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:27:08"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:27:09"}
+{"level":"info","message":"GET /api/v1/about/partners - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:27:11"}
+{"level":"info","message":"GET /api/v1/about/partners - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:28:11"}
+{"level":"info","message":"GET /api/v1/about/partners - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:32:39"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:13"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-00.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:13"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:14"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:14"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:14"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:14"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:19"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:19"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:19"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:19"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:19"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:38"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-02.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:39"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:39"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:39"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:39"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:39"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:44"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:44"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 151","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:44"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:44"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-04-18 16:35:44"}
+{"level":"info","message":"GET /api/v1/about/partners - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:36:06"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:45:05"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:45:06"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:45:06"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:45:06"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:45:33"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:45:34"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:45:38"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:45:41"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:47:15"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:47:15"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:47:16"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:47:16"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:47:32"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:47:32"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:47:32"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:47:40"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:49:10"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:49:10"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:49:10"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:49:10"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:49:28"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:49:31"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:49:32"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:49:34"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:50:28"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:50:28"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:50:29"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:50:30"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:50:51"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:50:53"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:50:54"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:51:01"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:52:26"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:52:26"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:52:26"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:52:27"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:52:46"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:52:48"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:52:51"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:52:53"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:53:41"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:53:41"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:53:41"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:53:41"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:53:59"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:54:01"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:54:03"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:54:06"}
+{"level":"info","message":"GET /api/v1/about/partners - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:02"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:05"}
+{"level":"info","message":"GET /api/v1/blogs - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:23"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:27"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:37"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:37"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:37"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:37"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:37"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:55:44"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:00"}
+{"level":"info","message":"GET /api/v1/about - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:00"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:17"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:17"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:17"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:18"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:35"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:38"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:39"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 16:57:41"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:00:44"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:00:44"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:00:44"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:00:44"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:00:57"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:00:58"}
+{"level":"error","message":"500 GET /api/v1/blogs?limit=100 - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:01:01"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:01:08"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:01:13"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:01:29"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:01:36"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:01:39"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:02:37"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:02:55"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:03:12"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:03:56"}
+{"level":"info","message":"GET /api/v1/about - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:03:56"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:04:19"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-04-18 17:04:57"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:36"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:36"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:36"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:36"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:48"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:48"}
+{"level":"error","message":"500 GET /api/v1/blogs?limit=100 - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:51"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:56"}
+{"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:06:00"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:12"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-00.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:12"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:12"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:13"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:13"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:13"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:18"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:18"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 24","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:18"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:18"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-04-18 17:13:18"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:08"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-01.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:09"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:09"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:10"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:10"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:10"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:15"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:15"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:15"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:15"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 12:11:15"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:07"}
+{"level":"info","message":"GET /api/v1/about - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:07"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:15"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:15"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:15"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:15"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:15"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:16"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:16"}
+{"level":"info","message":"POST /api/v1/auth/login - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:27"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:28"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:28"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:28"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:28"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:28"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:32"}
+{"level":"info","message":"GET /api/v1/leagues - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:32"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:35"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:37"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:38"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:47"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:48"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:48"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:12:48"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:21"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:21"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:21"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:23"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:23"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:23"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:28"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:28"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:28"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:42"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:42"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:42"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:48"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:48"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:13:48"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:08"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:08"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:08"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:12"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:15"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:19"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:22"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:24"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:24"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:24"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:28"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:28"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:28"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:28"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:28"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:28"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:33"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:33"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:33"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:48"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:48"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:14:48"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:05"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:05"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:05"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:06"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:07"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:08"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:08"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:08"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:15:10"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:18:44"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:18:55"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:18:55"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:18:55"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:18:58"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:18:59"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:19:00"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:19:08"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:19:08"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:19:08"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:19:51"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:19:51"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:19:51"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:02"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:02"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:02"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:08"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:08"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:08"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:26"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:26"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:26"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:27"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:27"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:27"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:28"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:28"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:28"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:28"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:37"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:58"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:58"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:58"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:20:59"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:09"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:09"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:09"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:20"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:28"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:28"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:28"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:30"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:57"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-01.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:57"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:57"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:58"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:58"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 12:23:58"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:03"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:03"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:03"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:03"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:03"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:04"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-02.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:05"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:05"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:05"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:05"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:05"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:10"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:10"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:10"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 27","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:10"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:10"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:11"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:11"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:11"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:15"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-01.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:15"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:15"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:16"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:16"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:16"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:16"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:17"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::ffff:127.0.0.1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:17"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:17"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:21"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:21"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 27","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:21"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:21"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:21"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:22"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:28"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:28"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:24:28"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:02"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-02.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:02"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:03"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:03"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:03"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:03"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:08"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:08"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 27","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:08"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:08"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 12:25:08"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:22"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-00.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:23"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:23"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:23"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:23"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:23"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:27"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:27"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:27"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:28"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:28"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:28"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 27","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:28"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:28"}
+{"level":"info","message":"GET /api/v1/about - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:29"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:30"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:30"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:30"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:30"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:30"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:34"}
+{"level":"info","message":"GET /api/v1/leagues - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:34"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:42"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:29:49"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:30:01"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:30:04"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:43:41"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:43:41"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:43:41"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:43:41"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:43:41"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:43:44"}
+{"level":"info","message":"GET /api/v1/leagues - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:43:44"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:44:01"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:44:01"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:44:01"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:45:17"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:45:17"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:45:17"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:45:58"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:45:59"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:45:59"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:45:59"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:46:01"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:46:01"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:46:01"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:46:12"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:46:12"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:46:12"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:47:10"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:47:10"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:47:10"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:47:10"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:47:21"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:47:21"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:47:21"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:19"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:20"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:20"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:21"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:21"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:21"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:28"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:28"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:48:28"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:49:26"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:49:26"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:49:26"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:49:41"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:49:41"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:49:41"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:49:58"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:00"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:00"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:00"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:34"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:34"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:34"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:35"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:41"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:41"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:41"}
+{"level":"info","message":"GET /api/v1/about - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:52"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:53"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:53"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:53"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:53"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:53"}
+{"level":"info","message":"GET /api/v1/leagues - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:51:55"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:13"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:13"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:13"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:33"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:33"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:33"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:37"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:37"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:37"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:53"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:53"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:52:53"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:00"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:00"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:00"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:13"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:13"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:13"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:25"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:25"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:25"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:33"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:33"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:33"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:53"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:53"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:53:53"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:32"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:32"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:32"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:33"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:33"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:33"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:34"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:40"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:41"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:41"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:53"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:53"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:54:53"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:03"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:03"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:03"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:19"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:19"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:19"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:22"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:22"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:22"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:30"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:30"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:30"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:34"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:34"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:55:34"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:02"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:02"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:02"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:06"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:06"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:06"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:08"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:08"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:08"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:17"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:17"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:17"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:33"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:33"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:33"}
+{"level":"info","message":"PUT /api/v1/players/69e3608c87f919da559e19ad - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:45"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:46"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:53"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:53"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 12:56:53"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:49"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-00.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:50"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:50"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:51"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:51"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:51"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:56"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:56"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:56"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 27","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:56"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 13:20:56"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:16"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:16"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:16"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:16"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:16"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:19"}
+{"level":"info","message":"GET /api/v1/leagues - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:19"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:21"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:22:23"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:33"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:33"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:33"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:36"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:36"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:36"}
+{"level":"info","message":"GET /api/v1/about - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:52"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:54"}
+{"level":"info","message":"GET /api/v1/auth/csrf-token - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:54"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:54"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:54"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:54"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:55"}
+{"level":"info","message":"GET /api/v1/players - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:23:58"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:24:08"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:24:08"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:24:08"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:24:48"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:24:48"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:24:49"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:26:12"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:26:12"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:26:12"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:26:14"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:26:14"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:26:14"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:37"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:37"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:37"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:53"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:53"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:53"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:54"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:54"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:54"}
+{"level":"info","message":"GET /api/v1/dashboard/stats - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:59"}
+{"level":"info","message":"GET /api/v1/contact/enquiries - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:59"}
+{"level":"info","message":"GET /api/v1/contact/profile-requests - IP: ::1","service":"pro-talent-connect","timestamp":"2026-05-05 13:27:59"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:28"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-01.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:28"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:29"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:29"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:29"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:29"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:34"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:34"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:34"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:34"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 13:28:34"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:25"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-02.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:25"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:25"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:26"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:26"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:26"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:31"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:31"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: {\"_id\":\"69987851fc67d47c22864ea7\",\"name\":\"SUBHAM JYOTI DAS\"}","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:31"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:31"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:31"}
+{"level":"info","message":"CORS allowlist loaded (4 origins)","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:32"}
+{"level":"info","message":"✅ MongoDB Connected: ac-jpjoszg-shard-00-00.ccvzjug.mongodb.net","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:32"}
+{"level":"info","message":"Starting cache warming...","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:33"}
+{"level":"info","message":"Cache warming complete: 5/5 successful, 0 failed","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:33"}
+{"level":"info","message":"[keepAlive] Background worker scheduled (every 24 h).","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:33"}
+{"level":"info","message":"🚀 Server running in development mode on port 5001","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:33"}
+{"level":"info","message":"[keepAlive] Running 24-hour MongoDB keep-alive ping...","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:38"}
+{"level":"info","message":"[keepAlive] Query 1/3 OK - result: 188","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:38"}
+{"level":"info","message":"[keepAlive] Query 2/3 OK - result: {\"_id\":\"69987778ec5f91d6a6b31a09\",\"title\":\"Platform Reaches 1000 Player Milestone\"}","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:38"}
+{"level":"info","message":"[keepAlive] Query 3/3 OK - result: 152","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:38"}
+{"level":"info","message":"[keepAlive] Done. Next ping in 24 hours.","service":"pro-talent-connect","timestamp":"2026-05-05 13:29:38"}

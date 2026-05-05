@@ -59,16 +59,25 @@ function hasValidTransferMarketProfile(transferMarketLink) {
   if (!transferMarketLink || typeof transferMarketLink !== "string") return false;
 
   const link = transferMarketLink.trim();
-  if (!link) return false;
+  if (!link || link.length === 0) return false;
 
   try {
     const url = new URL(link);
     const host = url.hostname.toLowerCase();
     const path = url.pathname.toLowerCase();
 
-    // Accept Transfermarkt country domains and profile paths like /.../profil/spieler/...
-    return host.includes("transfermarkt.") && path.includes("/profil/");
-  } catch {
+    // Accept Transfermarkt country domains (de, en, fr, es, it, etc.) and profile paths
+    // Patterns: /profil/spieler/, /player/ (for English), or just contains profil
+    return (
+      host.includes("transfermarkt.") &&
+      (path.includes("/profil/spieler/") ||
+       path.includes("/player/") ||
+       path.includes("/profil/") ||
+       // Also accept direct player pages
+       path.match(/\/\d+\/?$/)) // Matches URLs ending with /123456 or /123456/
+    );
+  } catch (err) {
+    // If URL parsing fails, return false
     return false;
   }
 }
@@ -95,13 +104,57 @@ const COMPETITION_POINTS = {
   Other: 0,
 };
 
+/**
+ * Maps competition types to scoring points with fuzzy matching
+ * Handles variations in league names from database vs hardcoded definitions
+ */
+function getCompetitionPoints(competitionType) {
+  if (!competitionType || typeof competitionType !== "string") return 0;
+
+  const type = competitionType.trim();
+  
+  // Direct match first (fastest)
+  if (COMPETITION_POINTS[type] !== undefined) {
+    return COMPETITION_POINTS[type];
+  }
+
+  const normalized = type.toLowerCase();
+
+  // Fuzzy matching for common league name variations
+  if (normalized.includes("national team")) return 25;
+  if (normalized.includes("i-league") && normalized.includes("senior")) return 20;
+  if (normalized.includes("i-league 2") || normalized.includes("ileague 2")) return 18.5;
+  if (normalized.includes("i-league 3") || normalized.includes("ileague 3")) return 18;
+  if (normalized.includes("state") && normalized.includes("franchise")) return 18.5;
+  if (normalized.includes("indian super league") || normalized.includes("isl")) return 18;
+  if (normalized.includes("santosh trophy")) return 15;
+  if (normalized.includes("national youth")) return 10;
+  if (normalized.includes("youth") && normalized.includes("i-league")) return 5;
+  if (normalized.includes("elite youth")) return 5;
+  if (normalized.includes("rfdl")) return 5;
+  if (normalized.includes("foreign exposure")) return 7.5;
+  
+  // State league variations
+  if (normalized.includes("state league") && !normalized.includes("youth")) return 3;
+  if (normalized.includes("state") && normalized.includes("youth")) return 2;
+  
+  // District league
+  if (normalized.includes("district league")) return 1.5;
+  
+  // Any other named competition gets baseline points
+  if (type.length > 0) return 0.5;
+  
+  return 0;
+}
+
 function calcCompetitionScore(competitions) {
   if (!competitions || !Array.isArray(competitions) || competitions.length === 0) return 0;
   let total = 0;
   try {
     for (const comp of competitions) {
-      if (comp && comp.type && COMPETITION_POINTS[comp.type]) {
-        total += COMPETITION_POINTS[comp.type];
+      if (comp && comp.type) {
+        const points = getCompetitionPoints(comp.type);
+        total += points;
       }
     }
   } catch (e) {

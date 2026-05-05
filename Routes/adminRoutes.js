@@ -8,6 +8,7 @@ const {
   withdrawInvite,
   demoteAdmin,
   deleteAdmin,
+  recalculateAllScores,
 } = require("../services/adminController");
 const { protect, authorize } = require("../Middleware/authMiddleware");
 const { validate, inviteAdminSchema } = require("../Middleware/validator");
@@ -17,6 +18,9 @@ router.use(protect, authorize("Super Admin"));
 
 // List all admin accounts
 router.get("/", getAllAdmins);
+
+// Recalculate scout scores for all players
+router.post("/actions/recalculate-scores", recalculateAllScores);
 
 // Create a new admin account
 router.post("/", validate(inviteAdminSchema), createAdmin);
