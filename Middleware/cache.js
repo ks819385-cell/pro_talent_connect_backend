@@ -178,15 +178,16 @@ class LRUCache {
   }
 }
 
+const isDev = process.env.NODE_ENV !== 'production' || process.env.DEBUG_CACHE === 'true';
+const debugLog = (...args) => {
+  if (isDev) {
+    console.log(...args);
+  }
+};
+
 // Singleton cache instance with default config
 const cache = new LRUCache(500, 300); // 500 max entries, 300s default TTL
 
-/**
- * Cache-Aside middleware for GET endpoints
- * Checks cache first, falls back to handler, then updates cache
- * @param {number} ttl - Time to live in seconds (default: 300)
- * @param {string} prefix - Cache key prefix for invalidation grouping
- */
 const cacheMiddleware = (ttl = 300, prefix = '') => {
   return (req, res, next) => {
     // Only cache GET requests with 2xx status codes
@@ -198,22 +199,28 @@ const cacheMiddleware = (ttl = 300, prefix = '') => {
     const key = `${prefix}:${req.originalUrl}`;
     const cached = cache.get(key);
 
+    debugLog(`[Cache Middleware] GET Request: ${req.originalMethod || req.method} ${req.originalUrl}`);
+    debugLog(`[Cache Middleware] Cache Key: ${key}`);
+
     if (cached) {
+      debugLog(`[Cache Middleware] Cache HIT: ${key}`);
       logger.debug(`Cache HIT: ${key}`);
       res.set('X-Cache', 'HIT');
-      res.set('Cache-Control', `public, max-age=${ttl}`);
+      res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
       return res.status(200).json(cached);
     }
 
+    debugLog(`[Cache Middleware] Cache MISS: ${key}`);
     logger.debug(`Cache MISS: ${key}`);
     res.set('X-Cache', 'MISS');
-    res.set('Cache-Control', `public, max-age=${ttl}`);
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
 
     // Intercept res.json to cache the response
     const originalJson = res.json.bind(res);
     res.json = (body) => {
       // Only cache successful responses (200-299)
       if (res.statusCode >= 200 && res.statusCode < 300) {
+        debugLog(`[Cache Middleware] Storing to Cache: ${key} (TTL: ${ttl}s)`);
         cache.set(key, body, ttl);
       }
       return originalJson(body);
@@ -230,12 +237,14 @@ const cacheMiddleware = (ttl = 300, prefix = '') => {
  */
 const invalidateCache = (...prefixes) => {
   return (req, res, next) => {
+    debugLog(`[Cache Invalidate] Intercepting response for: ${req.originalMethod || req.method} ${req.originalUrl}`);
     // Intercept after response is sent
     const originalJson = res.json.bind(res);
     res.json = (body) => {
       // Write-Through: Invalidate on successful write operations (201, 200)
       if (res.statusCode >= 200 && res.statusCode < 300) {
         prefixes.forEach((prefix) => {
+          debugLog(`[Cache Invalidate] Invalidating cache for prefix: ${prefix}`);
           cache.invalidate(prefix);
           logger.debug(`Cache INVALIDATED: ${prefix}*`);
         });

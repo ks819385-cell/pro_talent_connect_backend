@@ -2,13 +2,22 @@ const csrf = require("csurf");
 
 // CSRF protection middleware
 // Uses double-submit cookie pattern (secure for API applications)
-const csrfProtection = csrf({
+const csrfProtectionReal = csrf({
   cookie: {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    domain: process.env.COOKIE_DOMAIN || undefined,
   },
 });
+
+const csrfProtection = (req, res, next) => {
+  if (process.env.NODE_ENV === "development" || process.env.DISABLE_CSRF === "true") {
+    req.csrfToken = () => "dev-csrf-token";
+    return next();
+  }
+  return csrfProtectionReal(req, res, next);
+};
 
 // Middleware to generate and send CSRF token
 // Used on GET requests (login page, forms) and after login

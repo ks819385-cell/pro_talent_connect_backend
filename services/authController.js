@@ -14,6 +14,7 @@ const getCookieOptions = () => {
     sameSite: isProduction ? "none" : "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000,
     path: "/",
+    domain: process.env.COOKIE_DOMAIN || undefined,
   };
 };
 

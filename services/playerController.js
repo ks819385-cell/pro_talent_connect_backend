@@ -3,6 +3,13 @@ const { logAction } = require("../Middleware/auditLogger");
 const { calculateScoutReport } = require("./scoutReportCalculator");
 const { AppError, catchAsync } = require("../Middleware/errorHandler");
 
+const isDev = process.env.NODE_ENV !== 'production' || process.env.DEBUG_CACHE === 'true';
+const debugLog = (...args) => {
+  if (isDev) {
+    console.log(...args);
+  }
+};
+
 const MISSING_ID_LABEL = "Player Has No ID";
 
 function escapeRegex(value = "") {
@@ -424,6 +431,9 @@ const getPlayerById = catchAsync(async (req, res) => {
 // @route   PUT /api/players/:id
 // @access  Private / Admin & Super Admin
 const updatePlayer = catchAsync(async (req, res) => {
+    debugLog(`[Update Player Controller] PUT request initiated for ID: ${req.params.id}`);
+    debugLog(`[Update Player Controller] 1. Incoming payload:\n`, JSON.stringify(req.body, null, 2));
+
     const player = await Player.findOne({
       _id: req.params.id,
       isDeleted: { $ne: true },
@@ -432,6 +442,8 @@ const updatePlayer = catchAsync(async (req, res) => {
     if (!player) {
       throw new AppError("Player not found", 404);
     }
+
+    debugLog(`[Update Player Controller] 3. Database document BEFORE update:\n`, JSON.stringify(player, null, 2));
 
     // Update only provided fields
     const updatableFields = [
@@ -472,11 +484,15 @@ const updatePlayer = catchAsync(async (req, res) => {
       "mentalityScore",
     ];
 
+    const sanitizedPayload = {};
     updatableFields.forEach((field) => {
       if (req.body[field] !== undefined) {
         player[field] = req.body[field];
+        sanitizedPayload[field] = req.body[field];
       }
     });
+
+    debugLog(`[Update Player Controller] 2. Sanitized payload assigned:\n`, JSON.stringify(sanitizedPayload, null, 2));
 
     player.plId = player.playerId;
 
@@ -516,6 +532,8 @@ const updatePlayer = catchAsync(async (req, res) => {
       strictPopulate: false,
     });
 
+    debugLog(`[Update Player Controller] 4. Database document AFTER update:\n`, JSON.stringify(updatedPlayer, null, 2));
+
     // Log player update
     await logAction({
       user: req.user,
@@ -528,6 +546,7 @@ const updatePlayer = catchAsync(async (req, res) => {
       status: "SUCCESS",
     });
 
+    debugLog(`[Update Player Controller] 5. Response body returned to frontend:\n`, JSON.stringify(updatedPlayer, null, 2));
     res.status(200).json(updatedPlayer);
 });
 

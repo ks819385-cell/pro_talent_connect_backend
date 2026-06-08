@@ -5,7 +5,7 @@
 
 const Joi = require('joi');
 
-const PLAYER_ID_PATTERN = /^(PL\d{10}|Player Has No ID)$/;
+const PLAYER_ID_PATTERN = /^(PL\d+|Player Has No ID|TEMP-[A-Za-z0-9-]+)$/;
 
 // Authentication Schemas
 const loginSchema = Joi.object({
@@ -104,8 +104,8 @@ const createPlayerSchema = Joi.object({
   mobileNumber: Joi.string().pattern(/^[0-9+\-\s()]+$/).required(),
   email: Joi.string().email().required().trim().lowercase(),
   profileImage: Joi.string().allow('', null).trim(),
-  scouting_notes: Joi.string().max(2000).allow('', null).trim(),
-  career_history: Joi.string().max(2000).allow('', null).trim(),
+  scouting_notes: Joi.string().max(10000).allow('', null).trim(),
+  career_history: Joi.string().max(10000).allow('', null).trim(),
   media_links: Joi.array().items(Joi.string().uri()),
   youtubeVideoUrl: Joi.string().uri().allow('', null).trim(),
   videoThumbnail: Joi.string().uri().allow('', null).trim(),
@@ -113,6 +113,7 @@ const createPlayerSchema = Joi.object({
   videoDescription: Joi.string().max(300).allow('', null).trim(),
   competitions: Joi.array().items(
     Joi.object({
+      _id: Joi.any(),
       name: Joi.string().required().trim(),
       type: Joi.string().max(100).allow('', null).trim(),
       year: Joi.number().integer().min(1900).max(2100).allow(null, ''),
@@ -127,6 +128,7 @@ const createPlayerSchema = Joi.object({
   mentalityScore: Joi.number().valid(0, 1, 2).allow(null),
   clubsPlayed: Joi.array().items(
     Joi.object({
+      _id: Joi.any(),
       clubName: Joi.string().required().trim(),
       clubLogo: Joi.string().allow('', null).trim(),
       duration: Joi.string().allow('', null).trim(),
@@ -158,8 +160,8 @@ const updatePlayerSchema = Joi.object({
   mobileNumber: Joi.string().pattern(/^[0-9+\-\s()]+$/).allow('', null),
   email: Joi.string().email().trim().lowercase(),
   profileImage: Joi.string().allow('', null).trim(),
-  scouting_notes: Joi.string().max(2000).allow('', null).trim(),
-  career_history: Joi.string().max(2000).allow('', null).trim(),
+  scouting_notes: Joi.string().max(10000).allow('', null).trim(),
+  career_history: Joi.string().max(10000).allow('', null).trim(),
   media_links: Joi.array().items(Joi.string().uri()),
   youtubeVideoUrl: Joi.string().uri().allow('', null).trim(),
   videoThumbnail: Joi.string().uri().allow('', null).trim(),
@@ -167,6 +169,7 @@ const updatePlayerSchema = Joi.object({
   videoDescription: Joi.string().max(300).allow('', null).trim(),
   competitions: Joi.array().items(
     Joi.object({
+      _id: Joi.any(),
       name: Joi.string().required().trim(),
       type: Joi.string().max(100).allow('', null).trim(),
       year: Joi.number().integer().min(1900).max(2100).allow(null, ''),
@@ -181,6 +184,7 @@ const updatePlayerSchema = Joi.object({
   mentalityScore: Joi.number().valid(0, 1, 2).allow(null),
   clubsPlayed: Joi.array().items(
     Joi.object({
+      _id: Joi.any(),
       clubName: Joi.string().required().trim(),
       clubLogo: Joi.string().allow('', null).trim(),
       duration: Joi.string().allow('', null).trim(),

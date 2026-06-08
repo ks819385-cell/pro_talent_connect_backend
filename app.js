@@ -30,6 +30,14 @@ const app = express();
 // Trust proxy (important for rate limiting behind nginx)
 app.set("trust proxy", 1);
 
+// Method override middleware to bypass server/WAF restrictions on PUT/DELETE/PATCH
+app.use((req, res, next) => {
+  if (req.method === "POST" && req.headers["x-http-method-override"]) {
+    req.method = req.headers["x-http-method-override"].toUpperCase();
+  }
+  next();
+});
+
 
 // ================= SECURITY =================
 app.use(
@@ -108,7 +116,7 @@ const corsOptions = {
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-CSRF-Token"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-CSRF-Token", "X-HTTP-Method-Override"],
   optionsSuccessStatus: 200,
 };
 

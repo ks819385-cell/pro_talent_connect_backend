@@ -121,7 +121,7 @@ describe("Cache module", () => {
 
       expect(second.status).toBe(200);
       expect(second.headers["x-cache"]).toBe("HIT");
-      expect(second.headers["cache-control"]).toContain("max-age=5");
+      expect(second.headers["cache-control"]).toContain("no-cache");
       expect(second.body.handlerRuns).toBe(1);
     });
 
@@ -255,6 +255,37 @@ describe("Cache module", () => {
       expect(res.body).toEqual({
         success: true,
         message: "Cache flushed successfully",
+      });
+    });
+
+    it("POST /cache/flush fails with 403 when CSRF token is missing", async () => {
+      const agent = request.agent(appApi);
+
+      const res = await agent
+        .post("/cache/flush")
+        .send({});
+
+      expect(res.status).toBe(403);
+      expect(res.body).toEqual({
+        success: false,
+        error: "CSRF validation failed",
+        message: "Invalid or missing CSRF token",
+      });
+    });
+
+    it("POST /cache/flush fails with 403 when CSRF token is invalid", async () => {
+      const agent = request.agent(appApi);
+
+      const res = await agent
+        .post("/cache/flush")
+        .set("X-CSRF-Token", "invalid-token-value")
+        .send({});
+
+      expect(res.status).toBe(403);
+      expect(res.body).toEqual({
+        success: false,
+        error: "CSRF validation failed",
+        message: "Invalid or missing CSRF token",
       });
     });
   });
