@@ -5,7 +5,7 @@
 
 const Joi = require('joi');
 
-const PLAYER_ID_PATTERN = /^(PL\d+|Player Has No ID|TEMP-[A-Za-z0-9-]+)$/;
+const PLAYER_ID_PATTERN = /^(PL\d+|Player Has No ID|TEMP-[A-Za-z0-9-]+|PTC-[A-Za-z0-9-]+)$/;
 
 // Authentication Schemas
 const loginSchema = Joi.object({
@@ -90,7 +90,7 @@ const createPlayerSchema = Joi.object({
   preferredFoot: Joi.string().valid('Left', 'Right', 'Both').required(),
   transferMarketLink: Joi.string().uri().allow('', null).trim(),
   playerId: Joi.string().required().trim().pattern(PLAYER_ID_PATTERN).messages({
-    'string.pattern.base': 'Player ID must look like PL0000000040, or use Player Has No ID when the player does not have an assigned ID',
+    'string.pattern.base': 'Player ID must look like PL0000000040, PTC-123456-ABCD, or use Player Has No ID when the player does not have an assigned ID',
   }),
   dateOfBirth: Joi.date().required(),
   nationality: Joi.string().required().trim(),
@@ -146,7 +146,7 @@ const updatePlayerSchema = Joi.object({
   preferredFoot: Joi.string().valid('Left', 'Right', 'Both').allow('', null),
   transferMarketLink: Joi.string().uri().allow('', null).trim(),
   playerId: Joi.string().trim().pattern(PLAYER_ID_PATTERN).messages({
-    'string.pattern.base': 'Player ID must look like PL0000000040, or use Player Has No ID when the player does not have an assigned ID',
+    'string.pattern.base': 'Player ID must look like PL0000000040, PTC-123456-ABCD, or use Player Has No ID when the player does not have an assigned ID',
   }),
   dateOfBirth: Joi.date(),
   nationality: Joi.string().allow('', null).trim(),

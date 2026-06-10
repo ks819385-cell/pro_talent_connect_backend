@@ -216,5 +216,35 @@ describe("Players API", () => {
       expect(res.status).toBe(200);
       expect(res.body.profileImage).toBe("new-image.jpg");
     });
+
+    it("should update an approved player with a PTC- prefixed ID", async () => {
+      const player = await Player.create({
+        name: "Approved Player",
+        playingPosition: "Forward",
+        playerId: "PTC-1700000000000-A1B2",
+        dateOfBirth: new Date(),
+        gender: "Male",
+        mobileNumber: "999",
+        email: "approved@test.com",
+      });
+
+      // Get fresh CSRF token
+      const csrfRes = await agent.get("/api/v1/auth/csrf-token");
+      const csrfToken = csrfRes.body.csrfToken;
+
+      const res = await agent
+        .put(`/api/v1/players/${player._id}`)
+        .set("Authorization", `Bearer ${token}`)
+        .set("X-CSRF-Token", csrfToken)
+        .send({
+          playerId: "PTC-1700000000000-A1B2",
+          playingPosition: "Midfield",
+          state: "California",
+        });
+
+      expect(res.status).toBe(200);
+      expect(res.body.playingPosition).toBe("Midfield");
+      expect(res.body.state).toBe("California");
+    });
   });
 });

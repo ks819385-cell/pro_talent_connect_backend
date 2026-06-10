@@ -16,6 +16,7 @@ const serviceRoutes = require("./Routes/serviceRoutes");
 const contactRoutes = require("./Routes/contactRoutes");
 const otpRoutes = require("./Routes/otpRoutes");
 const leagueRoutes = require("./Routes/leagueRoutes");
+const uploadRoutes = require("./Routes/uploadRoutes");
 
 // Middleware
 const { apiLimiter } = require("./Middleware/rateLimiter");
@@ -25,6 +26,7 @@ const { csrfProtection, generateCsrfToken, csrfErrorHandler } = require("./Middl
 const logger = require("./config/logger");
 const { getCacheStats, flushCache } = require("./Middleware/cache");
 
+const path = require("path");
 const app = express();
 
 // Trust proxy (important for rate limiting behind nginx)
@@ -47,9 +49,10 @@ app.use(
         defaultSrc: ["'self'"],
         styleSrc: ["'self'", "'unsafe-inline'"],
         scriptSrc: ["'self'"],
-        imgSrc: ["'self'", "data:", "https:"],
+        imgSrc: ["'self'", "data:", "https:", "http:"],
       },
     },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
     hsts: {
       maxAge: 31536000,
       includeSubDomains: true,
@@ -137,6 +140,18 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cookieParser());
 
+// ================= STATIC FILES =================
+// Serve uploads statically without directory listing and with caching headers
+app.use(
+  "/public",
+  express.static(path.join(__dirname, "public"), {
+    autoIndex: false, // Disable directory listings
+    setHeaders: (res, path) => {
+      res.setHeader("Cache-Control", "public, max-age=604800"); // Cache for 7 days
+    },
+  })
+);
+
 // ================= CSRF PROTECTION =================
 // CSRF tokens required for all state-changing requests (POST, PUT, DELETE, PATCH)
 app.use(csrfProtection);
@@ -204,6 +219,7 @@ app.use("/api/v1/audit-logs", auditLogRoutes);
 app.use("/api/v1/contact", contactRoutes);
 app.use("/api/v1/otp", otpRoutes);
 app.use("/api/v1/leagues", leagueRoutes);
+app.use("/api/v1/upload", uploadRoutes);
 // Services & How It Works define their own full paths (services, how-it-works)
 app.use("/api/v1", serviceRoutes);
 

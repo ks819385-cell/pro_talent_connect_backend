@@ -47,8 +47,21 @@ const createLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+// Strict rate limiter for uploads (Max 10 uploads per IP per minute)
+const uploadLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 10, // Limit each IP to 10 uploads per minute
+  message: {
+    success: false,
+    message: 'Too many upload attempts from this IP, please try again after a minute',
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 module.exports = {
   apiLimiter,
   authLimiter,
   createLimiter,
+  uploadLimiter,
 };

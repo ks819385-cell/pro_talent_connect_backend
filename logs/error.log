@@ -168,3 +168,54 @@
 {"level":"error","message":"500 GET /api/v1/blogs?limit=100 - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:51"}
 {"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:05:56"}
 {"level":"error","message":"500 GET /api/v1/about - Not allowed by CORS: http://127.0.0.1:4173","service":"pro-talent-connect","timestamp":"2026-04-18 17:06:00"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 18:26:53"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 18:27:48"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 18:28:08"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 18:28:43"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 18:29:15"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 18:29:51"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 18:30:46"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-08 19:12:22"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 19:17:28"}
+{"level":"error","message":"400 PATCH /api/v1/admins/6a26caf0b487ef6cf9735200/withdraw-invite - Only pending invites can be withdrawn","service":"pro-talent-connect","timestamp":"2026-06-08 19:30:17"}
+{"level":"error","message":"400 PUT /api/v1/about/partners - Partners must be provided as an array","service":"pro-talent-connect","timestamp":"2026-06-08 19:30:18"}
+{"level":"error","message":"403 PATCH /api/v1/admins/6a26caf1b487ef6cf9735213/withdraw-invite - Cannot withdraw your own account invite","service":"pro-talent-connect","timestamp":"2026-06-08 19:30:19"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 19:30:20"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-08 19:30:23"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-08 19:51:46"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 19:51:54"}
+{"level":"error","message":"400 PATCH /api/v1/admins/6a26d007cafb8ad9b63de306/withdraw-invite - Only pending invites can be withdrawn","service":"pro-talent-connect","timestamp":"2026-06-08 19:52:00"}
+{"level":"error","message":"403 PATCH /api/v1/admins/6a26d008cafb8ad9b63de319/withdraw-invite - Cannot withdraw your own account invite","service":"pro-talent-connect","timestamp":"2026-06-08 19:52:01"}
+{"level":"error","message":"400 PUT /api/v1/about/partners - Partners must be provided as an array","service":"pro-talent-connect","timestamp":"2026-06-08 19:52:07"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-08 19:58:22"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-08 19:58:33"}
+{"level":"error","message":"400 PATCH /api/v1/admins/6a26d196b51fdd00013204a9/withdraw-invite - Only pending invites can be withdrawn","service":"pro-talent-connect","timestamp":"2026-06-08 19:58:39"}
+{"level":"error","message":"403 PATCH /api/v1/admins/6a26d197b51fdd00013204bc/withdraw-invite - Cannot withdraw your own account invite","service":"pro-talent-connect","timestamp":"2026-06-08 19:58:40"}
+{"level":"error","message":"400 PUT /api/v1/about/partners - Partners must be provided as an array","service":"pro-talent-connect","timestamp":"2026-06-08 19:58:49"}
+{"level":"error","message":"500 GET /api/v1/contact/enquiries - Connection pool for ac-jpjoszg-shard-00-02.ccvzjug.mongodb.net:27017 was cleared because another operation failed with: \"connect ETIMEDOUT 159.41.183.232:27017\"","service":"pro-talent-connect","timestamp":"2026-06-08 20:34:36"}
+{"level":"error","message":"500 GET /api/v1/contact/profile-requests - Connection pool for ac-jpjoszg-shard-00-02.ccvzjug.mongodb.net:27017 was cleared because another operation failed with: \"connect ETIMEDOUT 159.41.183.232:27017\"","service":"pro-talent-connect","timestamp":"2026-06-08 20:34:36"}
+{"level":"error","message":"500 GET /api/v1/dashboard/stats - connect ETIMEDOUT 159.41.183.232:27017","service":"pro-talent-connect","timestamp":"2026-06-08 20:34:36"}
+{"level":"error","message":"400 PATCH /api/v1/admins/6a28df4ac1100afaed20689c/withdraw-invite - Only pending invites can be withdrawn","service":"pro-talent-connect","timestamp":"2026-06-10 09:21:39"}
+{"level":"error","message":"400 PUT /api/v1/about/partners - Partners must be provided as an array","service":"pro-talent-connect","timestamp":"2026-06-10 09:21:40"}
+{"level":"error","message":"403 PATCH /api/v1/admins/6a28df4cc1100afaed2068af/withdraw-invite - Cannot withdraw your own account invite","service":"pro-talent-connect","timestamp":"2026-06-10 09:21:41"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-10 09:21:44"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-10 09:21:46"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-10 09:22:06"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-10 10:33:50"}
+{"level":"error","message":"400 PATCH /api/v1/admins/6a28f03910bac46bf178c7ed/withdraw-invite - Only pending invites can be withdrawn","service":"pro-talent-connect","timestamp":"2026-06-10 10:33:53"}
+{"level":"error","message":"403 PATCH /api/v1/admins/6a28f03910bac46bf178c800/withdraw-invite - Cannot withdraw your own account invite","service":"pro-talent-connect","timestamp":"2026-06-10 10:33:54"}
+{"level":"error","message":"400 PUT /api/v1/about/partners - Partners must be provided as an array","service":"pro-talent-connect","timestamp":"2026-06-10 10:33:58"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-10 10:34:09"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-10 10:34:32"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-10 10:34:39"}
+{"level":"error","message":"400 PATCH /api/v1/admins/6a28f06dbd57101d03ec9b65/withdraw-invite - Only pending invites can be withdrawn","service":"pro-talent-connect","timestamp":"2026-06-10 10:34:46"}
+{"level":"error","message":"403 PATCH /api/v1/admins/6a28f06ebd57101d03ec9b78/withdraw-invite - Cannot withdraw your own account invite","service":"pro-talent-connect","timestamp":"2026-06-10 10:34:46"}
+{"level":"error","message":"400 PUT /api/v1/about/partners - Partners must be provided as an array","service":"pro-talent-connect","timestamp":"2026-06-10 10:34:50"}
+{"level":"error","message":"400 POST /api/v1/players - Duplicate playerId or email","service":"pro-talent-connect","timestamp":"2026-06-10 10:35:39"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-10 10:35:47"}
+{"level":"error","message":"400 PATCH /api/v1/admins/6a28f0aff7764db79f0e050a/withdraw-invite - Only pending invites can be withdrawn","service":"pro-talent-connect","timestamp":"2026-06-10 10:35:52"}
+{"level":"error","message":"403 PATCH /api/v1/admins/6a28f0b0f7764db79f0e051d/withdraw-invite - Cannot withdraw your own account invite","service":"pro-talent-connect","timestamp":"2026-06-10 10:35:52"}
+{"level":"error","message":"400 PUT /api/v1/about/partners - Partners must be provided as an array","service":"pro-talent-connect","timestamp":"2026-06-10 10:36:02"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-10 10:39:48"}
+{"level":"error","message":"401 POST /api/v1/auth/login - Invalid email or password","service":"pro-talent-connect","timestamp":"2026-06-10 10:40:29"}
+{"level":"error","message":"404 GET /favicon.ico - Route /favicon.ico not found","service":"pro-talent-connect","timestamp":"2026-06-10 10:53:34"}
